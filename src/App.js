@@ -1,24 +1,24 @@
-import './App.css';
-import { MainObject } from './Component/commonFun';
+import React, { useEffect, useState } from 'react'
+import { MainObject } from './commonFun'
+import axios from 'axios';
 
-function App() {
-  let obj = [{name: "Audit",value: "Pass"},
-             {name: "Audit",value: "Fail"},
-             {name: "Audit",value: "NA"}]
+const App = () => {
+    const [btnVal, setbtnVal] = useState()
+    const funaction = () => {return "Button Clicked"};
+    useEffect(() => {
+        axios.get(`http://localhost:8080/VF/getBtn?formId=Form-101`)
+        .then((res) => {setbtnVal(res.data)})
+    },[])
   return (
-    <div className="App">
-      <button onClick={()=>{MainObject.alert("Hiii...!")}}>Save</button>
-      {
-        MainObject.button("m-3","Submit","100px","30px")
-      }
-      {
-        MainObject.input("m-3","text","100px","30px")
-      }
-      {
-        MainObject.dropdown(obj)
-      }
-    </div>
-  );
+    <>
+    {
+        btnVal.map((res) => {
+            return <>{MainObject.button(res.classNameVal,res.widthVal.res.heightVal,res.btnName,funaction)}</>
+        })
+        
+    }
+    </>
+  )
 }
 
-export default App;
+export default App

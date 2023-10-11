@@ -1,0 +1,11 @@
+[{"srno": "number",
+ "fname": "text",
+ "lname": "text",
+ "dob": "date",
+ "email": "text",
+ "srnoVal": "",
+ "fnameVal": "",
+ "lnameVal": "",
+ "dobVal": "",
+ "emailVal": ""
+}]

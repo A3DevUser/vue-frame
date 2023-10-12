@@ -3,7 +3,8 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 
 const rootReducers = combineReducers({
-    SectionRed, ColumnRed
+    SectionRed, 
+    ColumnRed
     });
 
 export default rootReducers

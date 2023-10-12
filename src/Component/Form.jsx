@@ -25,11 +25,10 @@ const Form = () => {
 
   return (
     <div>
-      {
-        SectionRed.loading ? MainObject.loader() : 
-        ColumnRed.loading ? MainObject.loader() : 
-        MainObject.accordion(SectionRed.val,ColumnRed.val,[])
-      }
+      {/* {
+        SectionRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
+        MainObject.accordion(SectionRed.val,ColumnRed.val,[]) 
+      } */}
     </div>
   )
 }

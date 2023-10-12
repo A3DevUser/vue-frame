@@ -23,13 +23,9 @@ export const MainObject = {
     },
 
     table : (col,data,width) =>{
-        console.log(col)
-        console.log(data)
          return <FormTable col={col} dData={[]} width={width}/> },
 
     accordion : (accordionVal,col,data) => {
-        console.log(col)
-        console.log(data)
         return <Accordion className="m-5" defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='true'}).map((res)=>{return res.secId })}>
         {
         accordionVal.map((res,i) => {

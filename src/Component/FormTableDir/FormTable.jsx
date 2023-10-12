@@ -6,7 +6,7 @@ import { ColumnHeader } from './ColumnHeader'
 import TableStruc from './TableStruc'
 import { useSticky } from 'react-table-sticky'
 
-const FormTable = ({col,dData}) => {
+const FormTable = ({col,dData,width}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
@@ -92,7 +92,7 @@ const FormTable = ({col,dData}) => {
     return (
       <div>
         <Styles>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} width={width}/>
         </Styles>
     </div>
   )

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { TestAction } from './Store/Actions/TestAction'
+import Form from './Component/Form'
 
 const App = () => {
 
@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div>
-      
+      <Form/>
     </div>
   )
 }

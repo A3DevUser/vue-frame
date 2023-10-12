@@ -1,4 +1,5 @@
 import { Accordion,Modal,Spinner,Button } from "react-bootstrap"
+import FormTable from "../FormTableDir/FormTable"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -8,24 +9,33 @@ export const MainObject = {
         return <button className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal}} onClick={funButton}>{btnInfo.btnName}</button>
     },
     input : (inputInfo,funInput) => {
-        return <input className={inputInfo.classNameVal} type={inputInfo.typeVal} style={{width: inputInfo.widthVal, height: inputInfo.heightVal}}  onBlur={((e) => {funInput(e.target.value)})}/>
-    },
-    dropdown : (dropInfo,funDrop) => {
-        return <select className={dropInfo.classNameVal} style={{width: dropInfo.widthVal, height: dropInfo.heightVal}} onChange={(e)=>{funDrop(e)}}>
+        if(inputInfo.typeVal == 'dropDown'){
+            return <select className={inputInfo.classNameVal} style={{width: inputInfo.widthVal, height: inputInfo.heightVal}} onChange={(e)=>{funInput(e)}}>
             {
-                dropInfo.map((res,i) => {
-                        return <option key={i} value={res.dropVal}>{res.dropVal}</option>
+                inputInfo.dropVal.split(',').map((res,i) => {
+                        return <option key={i} value={res}>{res}</option>
                 })
             }
         </select>
+        }else{
+            return <input className={inputInfo.classNameVal} type={inputInfo.typeVal} style={{width: inputInfo.widthVal, height: inputInfo.heightVal}}  onBlur={((e) => {funInput(e.target.value)})}/>
+        }
     },
-    accordion : (accordionVal) => {
-        return <Accordion defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen===true}).map((res)=>{return res.secid })}>
+
+    table : (col,data,width) =>{
+        console.log(col)
+        console.log(data)
+         return <FormTable col={col} dData={[]} width={width}/> },
+
+    accordion : (accordionVal,col,data) => {
+        console.log(col)
+        console.log(data)
+        return <Accordion className="m-5" defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='true'}).map((res)=>{return res.secId })}>
         {
         accordionVal.map((res,i) => {
-        return  <Accordion.Item eventKey={res.secid}>
-        <Accordion.Header>{res.sechead}</Accordion.Header>
-        <Accordion.Body>{res.secbody}</Accordion.Body>
+        return  <Accordion.Item style={{width : res.width}} eventKey={res.secId}>
+        <Accordion.Header>{res.secName}</Accordion.Header>
+        <Accordion.Body>{res.secType == 'grid' ? MainObject.table(col.filter((fil)=>{ return fil.secId == res.secId}),data,res.width) : ''}</Accordion.Body>
         </Accordion.Item>
         })
         }

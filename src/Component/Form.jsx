@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FetchSectionData } from '../Store/Actions/Section';
 import { MainObject } from './Elements/commonFun';
-import FormTable from './FormTableDir/FormTable';
+// import FormTable from './FormTableDir/FormTable';
 import { FetchColumnData } from '../Store/Actions/Column';
 
 const Form = () => {

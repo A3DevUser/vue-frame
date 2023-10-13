@@ -5,7 +5,7 @@ import TableCell from './TableCell'
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,width}) => {
   return (
     <div>
-      <div {...getTableProps()} className="table sticky" style={{ width: width ? width - '5vh' : '98vw', height: '85vh' }}>
+      <div {...getTableProps()} className="table sticky" style={{ width: width ? width - '5vh' : '98vw' }}>
         <div className='header'>
             {
                 headerGroups.map((headerGroup)=>(

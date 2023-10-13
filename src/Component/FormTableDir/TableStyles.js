@@ -1,37 +1,49 @@
 import styled from 'styled-components';
 
 export const VerticalTableStyles = styled.div`
-border: 1px solid #ddd;
-display: flex;
-flex-direction: column;
-max-width: 100%;
+  .table {
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+  }
 
-.tr {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #ddd;
-}
+  .tr {
+    display: flex;
+    flex-direction: row;
 
-.th, .td {
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
-  background-color: white;
-  color: black;
-  text-align: left;
-}
+    :last-child {
+      .td {
+        border-bottom: 0;
+      }
+    }
+  }
 
-.th {
-  background-color: #adb5bd;
-  color: black;
-  text-align: center;
-}
+  .th {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    background-color: #adb5bd;
+    color: black;
+    text-align: center;
+    overflow: hidden;
 
-.td:last-child {
-  border-bottom: 0;
-}
+    :last-child {
+      border-right: 0;
+    }
+  }
 
+  .td {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    color: black;
+    text-align: left;
+    overflow: hidden;
+
+    :last-child {
+      border-right: 0;
+    }
+  }
 `;
-
 
 export const Styles = styled.div`
   .table {

@@ -91,9 +91,9 @@ const FormTable = ({col,dData,width}) => {
   const {getTableProps,getTableBodyProps,headerGroups,prepareRow,rows} = tableInstance
     return (
       <div>
-        <Styles>
+        <VerticalTableStyles>
         <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} width={width}/>
-        </Styles>
+        </VerticalTableStyles>
     </div>
   )
 }

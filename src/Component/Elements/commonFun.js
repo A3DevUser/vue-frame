@@ -25,13 +25,33 @@ export const MainObject = {
     table : (col,data,width) =>{
          return <FormTable col={col} dData={data} width={width}/> },
 
-    accordion : (accordionVal,col,data) => {
-        return <Accordion className="m-5" defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='true'}).map((res)=>{return res.secId })}>
+    accordion : (accordionVal,subsAccordianVal,col,data) => {
+        return <Accordion className="m-5" defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })}
+        >
         {
         accordionVal.map((res,i) => {
         return  <Accordion.Item style={{width : res.width}} eventKey={res.secId}>
         <Accordion.Header>{res.secName}</Accordion.Header>
-        <Accordion.Body>{res.secType == 'grid' ? MainObject.table(col.filter((fil)=>{ return fil.secId == res.secId}),data,res.width) : ''}</Accordion.Body>
+        <Accordion.Body>
+            <Accordion defaultActiveKey={subsAccordianVal.filter((fil)=>{return  fil.subSecIsOpen=='TRUE'}).map((subRes)=>{return subRes.subSecId })}>
+            {
+                subsAccordianVal.filter((fil)=>{
+                    return fil.secId == res.secId
+                }).map((subRes)=>{
+                    return <Accordion.Item eventKey={subRes.subSecId}>
+                        <Accordion.Header>{subRes.subSecName}</Accordion.Header>
+                        <Accordion.Body>
+                                {
+                                subRes.subSecType == 'grid' ? MainObject.table(col.filter((fil)=>{ return ((fil.secId == subRes.secId)&&(fil.subSecId == subRes.subSecId))}),data,res.width) : ''
+                            }
+                        </Accordion.Body>
+                    </Accordion.Item>
+                })
+            }
+            </Accordion>
+            {/* {res.secType == 'grid' ? MainObject.table(col.filter((fil)=>{ return fil.secId == res.secId}),data,res.width) : ''} */}
+            
+            </Accordion.Body>
         </Accordion.Item>
         })
         }
@@ -59,5 +79,26 @@ export const MainObject = {
               </Modal.Footer>
             </Modal>
           );
+    },
+    SectionNav : (sectionData,SubSectiondata) =>{
+        // console.log(SubSectiondata)
+        const secNamesEncountered = [];
+
+        return <div className='d-flex flex-column align-items-start flex' >
+            {
+                SubSectiondata.map((res)=>{
+                    const sec = sectionData.filter((fil)=>{return fil.secId == res.secId})[0]
+                    if (!secNamesEncountered.includes(res.secId)) {
+                        secNamesEncountered.push(res.secId)
+                        return (<>
+                        <button type="button" class="btn btn-outline-primary m-2">{sec.secName}</button> 
+                        <button type="button" class="btn btn-outline-primary mx-5 my-1">{res.subSecName}</button>
+                        </>);
+                      } else {
+                        return <button type="button" class="btn btn-outline-primary mx-5 my-1">{res.subSecName}</button>
+                      }
+                })
+            }
+        </div>
     }
 } 

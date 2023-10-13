@@ -1,5 +1,37 @@
 import styled from 'styled-components';
 
+export const VerticalTableStyles = styled.div`
+border: 1px solid #ddd;
+display: flex;
+flex-direction: column;
+max-width: 100%;
+
+.tr {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #ddd;
+}
+
+.th, .td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  color: black;
+  text-align: left;
+}
+
+.th {
+  background-color: #adb5bd;
+  color: black;
+  text-align: center;
+}
+
+.td:last-child {
+  border-bottom: 0;
+}
+
+`;
+
 
 export const Styles = styled.div`
   .table {

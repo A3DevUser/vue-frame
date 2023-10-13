@@ -27,7 +27,7 @@ const Form = () => {
     <div>
       {
         SectionRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
-        MainObject.accordion(SectionRed.val,ColumnRed.val,[]) 
+        MainObject.accordion(SectionRed.val,ColumnRed.val,[{col1 : '',col2:'', col3 :''}]) 
       }
     </div>
   )

@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react'
 import { useBlockLayout, useTable } from 'react-table'
 import './TableStyle.css'
-import { Styles } from './TableStyles'
+import { Styles,VerticalTableStyles } from './TableStyles'
 import { ColumnHeader } from './ColumnHeader'
 import TableStruc from './TableStruc'
 import { useSticky } from 'react-table-sticky'

@@ -2,10 +2,10 @@ import React from 'react'
 import TableCell from './TableCell'
 
 
-const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,width}) => {
+const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows}) => {
   return (
     <div>
-      <div {...getTableProps()} className="table sticky" style={{ width: width ? width - '5vh' : '98vw' }}>
+      <div {...getTableProps()} className="table sticky" style={{maxHeight :'40vh' }}>
         <div className='header'>
             {
                 headerGroups.map((headerGroup)=>(

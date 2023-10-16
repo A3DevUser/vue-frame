@@ -1,5 +1,7 @@
-import { Accordion,Modal,Spinner,Button } from "react-bootstrap"
+import { Accordion,Modal,Spinner,Button,Badge } from "react-bootstrap"
 import FormTable from "../FormTableDir/FormTable"
+import ModalButton from "../ModalButton"
+import ModalCompo from "../ModalCompo"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -25,25 +27,33 @@ export const MainObject = {
     table : (col,data,width) =>{
          return <FormTable col={col} dData={data} width={width}/> },
 
-    accordion : (accordionVal,subsAccordianVal,col,data) => {
-        return <Accordion className="m-5" defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })}
+    accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
+        return <Accordion className="m-5" 
+        // defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })} style={{width : width}}
+        activeKey={ defaultVal[0]}
         >
+            {/* {console.log(defaultVal[0])} */}
         {
         accordionVal.map((res,i) => {
-        return  <Accordion.Item style={{width : res.width}} eventKey={res.secId}>
+        return  <Accordion.Item onClick={()=>{setdefaultVal([defaultVal.includes(res.secId) ? '' : res.secId])}}
+        style={{width : res.width}} className='my-4' eventKey={res.secId}>
         <Accordion.Header>{res.secName}</Accordion.Header>
         <Accordion.Body>
-            <Accordion defaultActiveKey={subsAccordianVal.filter((fil)=>{return  fil.subSecIsOpen=='TRUE'}).map((subRes)=>{return subRes.subSecId })}>
+            <Accordion activeKey={defaultVal[1]}
+            // defaultActiveKey={subsAccordianVal.filter((fil)=>{return  fil.subSecIsOpen=='TRUE'}).map((subRes)=>{return subRes.subSecId })}
+            >
             {
                 subsAccordianVal.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
-                    return <Accordion.Item eventKey={subRes.subSecId}>
+                    return <Accordion.Item eventKey={subRes.subSecId} className='my-4' onClick={()=>{ setdefaultVal([defaultVal.includes(subRes.subSecId) ? '' : subRes.secId,subRes.subSecId] )}}>
                         <Accordion.Header>{subRes.subSecName}</Accordion.Header>
                         <Accordion.Body>
+                            <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'40vh'}}>
                                 {
                                 subRes.subSecType == 'grid' ? MainObject.table(col.filter((fil)=>{ return ((fil.secId == subRes.secId)&&(fil.subSecId == subRes.subSecId))}),data,res.width) : ''
                             }
+                            </div>
                         </Accordion.Body>
                     </Accordion.Item>
                 })
@@ -62,40 +72,50 @@ export const MainObject = {
             <Spinner variant="primary"/>
             </div>
     },
-    modalpop : (show, setModalShow,bodyDetails,titleDetails) => {
-        const handleClick = () =>{
-            setModalShow(false)
-        }
-            return (
-            <Modal show={show} scrollable={true} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-              <Modal.Header style={{height: "50px"}}>
-                <Modal.Title id="contained-modal-title-vcenter">{titleDetails}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                {bodyDetails}
-              </Modal.Body>
-              <Modal.Footer style={{height: "54px"}}>
-                <Button className="btn btn-primary btn-sm" onClick={handleClick}>Close</Button>
-              </Modal.Footer>
-            </Modal>
-          );
-    },
-    SectionNav : (sectionData,SubSectiondata) =>{
+    modalpop : (title,bodyDetails,show,showFunc) =>{return <ModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
+    
+    modalButton : (title,funcName) =>{return <ModalButton title={title} funcName={funcName} /> },
+    // (show, setModalShow,bodyDetails,titleDetails) => {
+    //     const handleClick = () =>{
+    //         setModalShow(false)
+    //     }
+
+    //         return (
+    //         <Modal show={show} scrollable={true} 
+    //         // size ='xl'
+    //         fullscreen={true}                      
+    //         aria-labelledby="contained-modal-title-vcenter" 
+    //         centered>
+    //           <Modal.Header style={{height: "50px"}}>
+    //             <Modal.Title id="contained-modal-title-vcenter">{titleDetails}</Modal.Title>
+    //           </Modal.Header>
+    //           <Modal.Body>
+    //             {bodyDetails}
+    //           </Modal.Body>
+    //           <Modal.Footer style={{height: "50px"}}>
+    //             <Button className="btn btn-primary btn-sm" onClick={handleClick}>Close</Button>
+    //           </Modal.Footer>
+    //         </Modal>
+    //       );
+    // },
+
+    SectionNav : (sectionData,SubSectiondata,setdefaultVal) =>{
         // console.log(SubSectiondata)
         const secNamesEncountered = [];
-
+// console.log(SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)))
         return <div className='d-flex flex-column align-items-start flex' >
             {
-                SubSectiondata.map((res)=>{
+                SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)).map((res)=>{
                     const sec = sectionData.filter((fil)=>{return fil.secId == res.secId})[0]
                     if (!secNamesEncountered.includes(res.secId)) {
                         secNamesEncountered.push(res.secId)
                         return (<>
-                        <button type="button" class="btn btn-outline-primary m-2">{sec.secName}</button> 
-                        <button type="button" class="btn btn-outline-primary mx-5 my-1">{res.subSecName}</button>
+                        <Badge style={{cursor:'pointer'}} className="m-2" onClick={()=>{setdefaultVal([sec.secId])}}>{sec.secName}</Badge> 
+
+                        <Badge style={{cursor:'pointer'}}  className="mx-3 my-1" onClick={()=>{setdefaultVal([res.secId,res.subSecId])}}>{res.subSecName}</Badge>
                         </>);
                       } else {
-                        return <button type="button" class="btn btn-outline-primary mx-5 my-1">{res.subSecName}</button>
+                        return <Badge style={{cursor:'pointer'}} className="mx-3 my-1" onClick={()=>{setdefaultVal([res.secId,res.subSecId])}}>{res.subSecName}</Badge>
                       }
                 })
             }

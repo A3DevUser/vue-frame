@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 const ModalButton = ({title,funcName}) => {
   return (
     <div>
-      <Button variant='primary' onClick={funcName}>{title}</Button>
+      <Button variant='primary ' size='sm' onClick={funcName}>{title}</Button>
     </div>
   )
 }

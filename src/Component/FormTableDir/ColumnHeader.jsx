@@ -1,4 +1,4 @@
-import { EditableActionCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
+import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
 
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow) =>{
 
@@ -56,6 +56,12 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow) =>{
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
         width : res.width,
         sticky : res.sticky
+      }
+    }else if(res.cellType === 'modalBtn'){
+      return{
+        Header : res.fieldName,
+        accessor : res.accessor,
+        Cell : ({cell}) =>{ return<EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row}  /> }
       }
     }
     else{

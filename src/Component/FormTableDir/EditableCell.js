@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+import { MainObject } from "../Elements/commonFun"
+import Form from "../Form"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -337,5 +339,24 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     return <div>
       <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button>
       <button className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
+    </div>
+  }
+
+  export const EditableActionPopCell = ({
+    row:  index ,
+    column:  id ,
+    colObj:colObj,
+    rowObj : rowObj,
+  }) => {
+
+    const[show,setshow] = useState(false)
+
+    const handleFunc = () => {
+      setshow(!show)
+    }
+    
+    return <div>
+      {MainObject.modalButton('Actions', handleFunc)}
+      {MainObject.modalpop('',<Form/>,show,handleFunc)}
     </div>
   }

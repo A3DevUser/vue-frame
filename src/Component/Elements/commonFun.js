@@ -29,24 +29,28 @@ export const MainObject = {
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 
-        // defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })} style={{width : width}}
+        defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })} style={{width : width}}
         activeKey={ defaultVal[0]}
         >
             {/* {console.log(defaultVal[0])} */}
         {
         accordionVal.map((res,i) => {
-        return  <Accordion.Item onClick={()=>{setdefaultVal([defaultVal.includes(res.secId) ? '' : res.secId])}}
+        return  <Accordion.Item 
+        onClick={()=>{setdefaultVal([defaultVal.includes(res.secId) ? '' : res.secId])}}
         style={{width : res.width}} className='my-4' eventKey={res.secId}>
         <Accordion.Header>{res.secName}</Accordion.Header>
         <Accordion.Body>
-            <Accordion activeKey={defaultVal[1]}
+            <Accordion 
+            // activeKey={defaultVal[1]}
             // defaultActiveKey={subsAccordianVal.filter((fil)=>{return  fil.subSecIsOpen=='TRUE'}).map((subRes)=>{return subRes.subSecId })}
             >
             {
                 subsAccordianVal.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
-                    return <Accordion.Item eventKey={subRes.subSecId} className='my-4' onClick={()=>{ setdefaultVal([defaultVal.includes(subRes.subSecId) ? '' : subRes.secId,subRes.subSecId] )}}>
+                    return <Accordion.Item eventKey={subRes.subSecId} className='my-4' 
+                    // onClick={()=>{ setdefaultVal([defaultVal.includes(subRes.subSecId) ? '' : subRes.secId,subRes.subSecId] )}}
+                    >
                         <Accordion.Header>{subRes.subSecName}</Accordion.Header>
                         <Accordion.Body>
                             <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'40vh'}}>
@@ -75,29 +79,6 @@ export const MainObject = {
     modalpop : (title,bodyDetails,show,showFunc) =>{return <ModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
     
     modalButton : (title,funcName) =>{return <ModalButton title={title} funcName={funcName} /> },
-    // (show, setModalShow,bodyDetails,titleDetails) => {
-    //     const handleClick = () =>{
-    //         setModalShow(false)
-    //     }
-
-    //         return (
-    //         <Modal show={show} scrollable={true} 
-    //         // size ='xl'
-    //         fullscreen={true}                      
-    //         aria-labelledby="contained-modal-title-vcenter" 
-    //         centered>
-    //           <Modal.Header style={{height: "50px"}}>
-    //             <Modal.Title id="contained-modal-title-vcenter">{titleDetails}</Modal.Title>
-    //           </Modal.Header>
-    //           <Modal.Body>
-    //             {bodyDetails}
-    //           </Modal.Body>
-    //           <Modal.Footer style={{height: "50px"}}>
-    //             <Button className="btn btn-primary btn-sm" onClick={handleClick}>Close</Button>
-    //           </Modal.Footer>
-    //         </Modal>
-    //       );
-    // },
 
     SectionNav : (sectionData,SubSectiondata,setdefaultVal) =>{
         // console.log(SubSectiondata)

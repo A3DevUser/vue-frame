@@ -40,7 +40,7 @@ const Form = () => {
   SectionRed.loading ? MainObject.loader() : SubSectionRed.loading ? MainObject.loader() : MainObject.SectionNav(SectionRed.val,SubSectionRed.val,setdefaultVal)
   }
   </div>
-  <div style={{flex: '95%',height:'70vh', maxHeight:'70vh', overflow:'scroll' }}>
+  <div style={{flex: '95%',height:'80vh', maxHeight:'80vh', overflow:'scroll' }}>
   {
          defaultVal&&SectionRed.loading ? MainObject.loader() : SubSectionRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :

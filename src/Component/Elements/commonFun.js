@@ -29,14 +29,14 @@ export const MainObject = {
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 
-        defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })} style={{width : width}}
-        activeKey={ defaultVal[0]}
+        // defaultActiveKey={accordionVal.filter((fil)=>{return  fil.isOpen=='TRUE'}).map((res)=>{return res.secId })} style={{width : width}}
+        // activeKey={ defaultVal[0]}
         >
             {/* {console.log(defaultVal[0])} */}
         {
         accordionVal.map((res,i) => {
         return  <Accordion.Item 
-        onClick={()=>{setdefaultVal([defaultVal.includes(res.secId) ? '' : res.secId])}}
+        // onClick={()=>{setdefaultVal([defaultVal.includes(res.secId) ? '' : res.secId])}}
         style={{width : res.width}} className='my-4' eventKey={res.secId}>
         <Accordion.Header>{res.secName}</Accordion.Header>
         <Accordion.Body>

@@ -14,6 +14,9 @@ const FormTable = ({col,dData}) => {
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
   
+    useEffect(()=>{
+      console.log('colData',col)
+    },[col])
   
   
   const formData = new FormData()

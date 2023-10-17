@@ -85,6 +85,7 @@ export const MainObject = {
         const secNamesEncountered = [];
 // console.log(SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)))
         return <div className='d-flex flex-column align-items-start flex' >
+            {console.log(sectionData,SubSectiondata)}
             {
                 SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)).map((res)=>{
                     const sec = sectionData.filter((fil)=>{return fil.secId == res.secId})[0]

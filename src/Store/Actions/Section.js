@@ -21,6 +21,7 @@ const SectionErr = (val) =>{
     }
 };
 
+
 export const FetchSectionData = (id) =>{
     return (dispatch)=>{
         dispatch(SectionReq());

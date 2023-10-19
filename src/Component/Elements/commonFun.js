@@ -44,7 +44,7 @@ export const MainObject = {
             // activeKey={defaultVal[1]}
             // defaultActiveKey={subsAccordianVal.filter((fil)=>{return  fil.subSecIsOpen=='TRUE'}).map((subRes)=>{return subRes.subSecId })}
             >
-            {
+            {/* {
                 subsAccordianVal.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
@@ -63,7 +63,7 @@ export const MainObject = {
                         </Accordion.Body>
                     </Accordion.Item>
                 })
-            }
+            } */}
             </Accordion>
             {/* {res.secType == 'grid' ? MainObject.table(col.filter((fil)=>{ return fil.secId == res.secId}),data,res.width) : ''} */}
             

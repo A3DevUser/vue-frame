@@ -64,7 +64,7 @@ const Form = () => {
   {
         SectionRed.loading ? MainObject.loader() : SubSectionRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
-         MainObject.tabs(SectionRed.val,SubSectionRed.val,ColumnRed.val,ColumnRed.val,[])
+         MainObject.tabs(SectionRed.val,SubSectionRed.val,ColumnRed.val,[])
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
   </div>

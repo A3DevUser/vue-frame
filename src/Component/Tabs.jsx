@@ -10,8 +10,8 @@ function TabsBar({accordionVal,gridData,columnData,data}) {
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
-                    return (<><h3 eventKey={subRes.subSecId}>{subRes.subSecName}</h3>
-                    <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'40vh'}}>
+                    return (<><br/><h3 eventKey={subRes.subSecId}>{subRes.subSecName}</h3>
+                    <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'50vh'}}>
                         {
                         subRes.subSecType == 'grid' ?
                         columnData&&

@@ -22,7 +22,6 @@ const GridForm = () => {
         {console.log(ColumnRed.val)}
       {
         loading ? MainObject.loader() :
-        ColumnRed.loading ? MainObject.loader() : 
         ColumnRed&&<div>{ MainObject.table(ColumnRed.val,[]) }</div>
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }

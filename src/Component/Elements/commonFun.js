@@ -2,6 +2,7 @@ import { Accordion,Modal,Spinner,Button,Badge } from "react-bootstrap"
 import FormTable from "../FormTableDir/FormTable"
 import ModalButton from "../ModalButton"
 import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
+import TabsBar from "../Tabs"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -105,5 +106,9 @@ export const MainObject = {
                 })
             }
         </div>
+    },
+
+    tabs : (accordionVal,gridData, columnData) =>{
+        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} />
     }
 } 

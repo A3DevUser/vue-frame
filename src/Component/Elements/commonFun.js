@@ -108,7 +108,7 @@ export const MainObject = {
         </div>
     },
 
-    tabs : (accordionVal,gridData, columnData, data) =>{
-        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} />
+    tabs : (accordionVal,gridData, columnData, data,defaultVal) =>{
+        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} />
     }
 } 

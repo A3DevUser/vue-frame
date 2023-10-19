@@ -1,10 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal } from 'react-bootstrap'
 
-const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
+export const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
   return (
     <div>
-      <Modal show={show} fullscreen={true} scrollable={true} onHide={showFunc} >
+      <Modal show={show} fullscreen={true} scrollable={true} onHide={showFunc}>
+        <Modal.Header closeButton>{title}</Modal.Header>
+        <Modal.Body>{bodyDetails}</Modal.Body>
+        <Modal.Footer>
+        <button className="btn btn-primary" onClick={showFunc}>Save</button>
+        <button className="btn btn-primary" onClick={showFunc}>Close</button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  )
+}
+
+export const SimpleModalCompo = ({title,bodyDetails,show,showFunc}) => {
+  return (
+    <div>
+      <Modal show={show} centered scrollable={true} onHide={showFunc}>
         <Modal.Header closeButton>{title}</Modal.Header>
         <Modal.Body>{bodyDetails}</Modal.Body>
         <Modal.Footer>
@@ -15,4 +30,3 @@ const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
   )
 }
 
-export default ModalCompo

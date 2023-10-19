@@ -10,3 +10,10 @@ export const ResetAct = ()=>{
         type : 'ResetAct'
     }
 }
+
+export const FormDataAct = (val) =>{
+    return {
+        type :'FormDataAct',
+        payload : val
+    }
+}

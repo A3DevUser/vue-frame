@@ -1,7 +1,7 @@
 import { Accordion,Modal,Spinner,Button,Badge } from "react-bootstrap"
 import FormTable from "../FormTableDir/FormTable"
 import ModalButton from "../ModalButton"
-import ModalCompo from "../ModalCompo"
+import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -55,7 +55,9 @@ export const MainObject = {
                         <Accordion.Body>
                             <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'40vh'}}>
                                 {
-                                subRes.subSecType == 'grid' ? MainObject.table(col.filter((fil)=>{ return ((fil.secId == subRes.secId)&&(fil.subSecId == subRes.subSecId))}),data,res.width) : ''
+                                subRes.subSecType == 'grid' ?
+                                col&&
+                                MainObject.table(col.filter((fil)=>{ return ((fil.secId == subRes.secId)&&(fil.subSecId == subRes.subSecId))}),data,res.width) : ''
                             }
                             </div>
                         </Accordion.Body>
@@ -77,6 +79,7 @@ export const MainObject = {
             </div>
     },
     modalpop : (title,bodyDetails,show,showFunc) =>{return <ModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
+    SimpleModal : (title,bodyDetails,show,showFunc) =>{return <SimpleModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
     
     modalButton : (title,funcName) =>{return <ModalButton title={title} funcName={funcName} /> },
 

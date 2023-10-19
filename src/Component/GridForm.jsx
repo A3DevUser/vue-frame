@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FetchColumnData } from '../Store/Actions/Column'
 import { FormIdAct, ResetAct } from '../Store/Actions/GeneralStates'
@@ -11,6 +11,7 @@ const GridForm = () => {
 
     const ColumnRed = useSelector((state)=>state.ColumnRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
+    const [loading, setloading] =useState()
 
     useEffect(()=>{
     dispatch(FetchColumnData(FormIdRed))
@@ -18,8 +19,12 @@ const GridForm = () => {
 
   return (
     <div>
+        {console.log(ColumnRed.val)}
       {
-        ColumnRed.loading ? MainObject.loader() : <FormTable col={ColumnRed.val} dData={[]}/>
+        loading ? MainObject.loader() :
+        ColumnRed.loading ? MainObject.loader() : 
+        ColumnRed&&<div>{ MainObject.table(ColumnRed.val,[]) }</div>
+        // <FormTable col={ColumnRed.val} dData={[]}/>
       }
     </div>
   )

@@ -5,7 +5,8 @@ import TableCell from './TableCell'
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows}) => {
   return (
     <div>
-      <div {...getTableProps()} className="table sticky" style={{maxHeight :'40vh' }}>
+
+      <div {...getTableProps()} className="table sticky m-3" style={{maxHeight :'40vh', maxWidth:'95vw' , overflow:'scroll' }}>
         <div className='header'>
             {
                 headerGroups.map((headerGroup)=>(

@@ -14,8 +14,11 @@ const Form = () => {
     const ColumnRed = useSelector((state)=>state.ColumnRed)
     const SubSectionRed = useSelector((state)=>state.SubSectionRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
+    const FormDatRed = useSelector((state) => state.FormDatRed)
 
     const [defaultVal,setdefaultVal] =useState([])
+    const [obj, setObj] = useState({});
+
 
     useEffect(()=>{
         dispatch(FetchSectionData(FormIdRed))
@@ -23,14 +26,30 @@ const Form = () => {
         dispatch(FetchColumnData(FormIdRed))
     },[FormIdRed])
 
+    // let obj = {};
+    // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
+    console.log('newObj',obj)
     useEffect(()=>{
-      console.log('defaultVal',defaultVal)
-    },[defaultVal])
+        if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
+          if(FormDatRed[FormDatRed.length-1][0] != undefined){
+             const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
+             const secId = ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
+             setObj((prevObj) => {
+              return {
+                ...prevObj,
+                [secId]: FormDatRed[FormDatRed.length - 1],
+              };
+            });
+          }
+        }
+      },[FormDatRed])
 
-    // useEffect(()=>{
-    //   console.log(SectionRed)
-    //   console.log(ColumnRed)
-    // },[SectionRed,ColumnRed])
+      console.log('finalObj',Object.values(obj))
+
+    useEffect(()=>{
+      console.log(SectionRed)
+      console.log(ColumnRed)
+    },[SectionRed,ColumnRed])
 
     const width = '75vw'
 
@@ -45,7 +64,7 @@ const Form = () => {
   {
         SectionRed.loading ? MainObject.loader() : SubSectionRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
-         MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[{col1 : '',col2:'', col3 :''},{col1 : '',col2:'', col3 :''},{col1 : '',col2:'', col3 :''},{col1 : '',col2:'', col3 :''}],width,defaultVal,setdefaultVal) 
+         MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
   </div>
     </div>

@@ -30,14 +30,20 @@ const Navbar = () => {
     }
 return (
 <>
-<nav style={{background: '#000080'}}>
+<nav 
+style={{backgroundColor:'#131D40'}}
+// className='bg-primary'
+>
 {
     NavBarRed.val.map((res,i)=>{
         if(res.navType=='img'){
             return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}}/>
 
         }else{
-            return <button onClick={()=>{handleNavigate(res)}} key={i} className=' btn btn-sm my-1 mx-2 p-2' style={{background: '#000080',color:'white'}}>{res.navName}</button>
+            return <button onClick={()=>{handleNavigate(res)}} key={i} 
+            className=' btn btn-sm my-1 mx-2 p-2' 
+            style={{backgroundColor:'#131D40', color:'white'}}
+            >{res.navName}</button>
         }
     })
 }

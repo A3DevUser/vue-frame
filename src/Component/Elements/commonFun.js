@@ -88,27 +88,23 @@ export const MainObject = {
         // console.log(SubSectiondata)
         const secNamesEncountered = [];
 // console.log(SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)))
-        return <div className='d-flex flex-column align-items-start flex' >
-            {console.log(sectionData,SubSectiondata)}
+        return <div className='d-flex flex-column align-items-start flex' id="sectionNavbar" >
             {
-                SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)).map((res)=>{
-                    const sec = sectionData.filter((fil)=>{return fil.secId == res.secId})[0]
-                    if (!secNamesEncountered.includes(res.secId)) {
-                        secNamesEncountered.push(res.secId)
-                        return (<>
-                        <Badge style={{cursor:'pointer'}} className="m-2" onClick={()=>{setdefaultVal([sec.secId])}}>{sec.secName}</Badge> 
-
-                        <Badge style={{cursor:'pointer'}}  className="mx-3 my-1" onClick={()=>{setdefaultVal([res.secId,res.subSecId])}}>{res.subSecName}</Badge>
-                        </>);
-                      } else {
-                        return <Badge style={{cursor:'pointer'}} className="mx-3 my-1" onClick={()=>{setdefaultVal([res.secId,res.subSecId])}}>{res.subSecName}</Badge>
-                      }
+                sectionData.map((res)=>{
+                    return <> 
+                    <Badge style={{cursor:'pointer'}} className="m-1" onClick={()=>{setdefaultVal([res.secId])}}>{res.secName}</Badge>
+                    {
+                        SubSectiondata.filter((fil,i)=>{return fil.secId == res.secId }).map((gres)=>{
+                            return <a href={'#'+gres.gridId} style={{cursor:'pointer'}} className="mx-3" onClick={()=>{setdefaultVal([res.secId])}}>{gres.gridName}</a>
+                        })
+                    } 
+                    </>
                 })
             }
         </div>
     },
 
-    tabs : (accordionVal,gridData, columnData, data,defaultVal) =>{
-        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} />
+    tabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal) =>{
+        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} />
     }
 } 

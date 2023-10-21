@@ -11,18 +11,17 @@ const GridForm = () => {
 
     const ColumnRed = useSelector((state)=>state.ColumnRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
-    const [loading, setloading] =useState()
 
     useEffect(()=>{
     dispatch(FetchColumnData(FormIdRed))
-    },[])
+    },[FormIdRed])
 
   return (
     <div>
         {console.log(ColumnRed.val)}
       {
-        loading ? MainObject.loader() :
-        ColumnRed&&<div>{ MainObject.table(ColumnRed.val,[]) }</div>
+        ColumnRed.loading ? MainObject.loader() :
+        <div>{ MainObject.table(ColumnRed.val,[{col1 :'',col2:''}],'') }</div>
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }
     </div>

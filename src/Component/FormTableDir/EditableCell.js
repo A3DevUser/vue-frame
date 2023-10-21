@@ -1,3 +1,5 @@
+import GridForm from "../GridForm"
+import TestComp from "../Elements/TestComp"
 import React, { useEffect, useState } from "react"
 import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
@@ -357,6 +359,6 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     return <div>
       {MainObject.modalButton('Actions', handleFunc)}
-      {MainObject.modalpop('',<Form/>,show,handleFunc)}
+      {MainObject.modalpop('','This is body',show,handleFunc)}
     </div>
   }

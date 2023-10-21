@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { FetchSectionData } from '../Store/Actions/Section';
 import { MainObject } from './Elements/commonFun';
 // import FormTable from './FormTableDir/FormTable';
-import { FetchColumnData } from '../Store/Actions/Column';
-import { FetchSubSectionData } from '../Store/Actions/SubSection';
-import { ResetAct } from '../Store/Actions/GeneralStates';
-import { FetchGridData } from '../Store/Actions/GridAct';
 
-const Form = () => {
+import { FetchConfColumnData } from '../Store/Actions/ConfColumn'
+import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
+import { FetchConfSectionData } from '../Store/Actions/ConfSection'
+
+
+const FormConf = () => {
 
     const dispatch = useDispatch();
-    const SectionRed = useSelector((state)=>state.SectionRed)
-    const ColumnRed = useSelector((state)=>state.ColumnRed)
-    const GridRed = useSelector((state)=>state.GridRed)
-    const SubSectionRed = useSelector((state)=>state.SubSectionRed)
+    const SectionRed = useSelector((state)=>state.ConfSectionRed)
+    const ColumnRed = useSelector((state)=>state.ConfColumnRed)
+    const GridRed = useSelector((state)=>state.ConfGridRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const FormDatRed = useSelector((state) => state.FormDatRed)
 
@@ -24,9 +23,9 @@ const Form = () => {
 
 
     useEffect(()=>{
-        dispatch(FetchSectionData( window.location.pathname === '/GridForm' ? 'FORM-101' :  FormIdRed))
-        dispatch(FetchGridData(window.location.pathname === '/GridForm' ? 'FORM-101' : FormIdRed))
-        dispatch(FetchColumnData(window.location.pathname === '/GridForm' ? 'FORM-101' : FormIdRed))
+        dispatch(FetchConfSectionData('FORM-105'))
+        dispatch(FetchConfGridData('FORM-105'))
+        dispatch(FetchConfColumnData('FORM-105'))
     },[FormIdRed])
 
       console.log('location',window.location.pathname)
@@ -34,18 +33,18 @@ const Form = () => {
     // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
     console.log('newObj',obj)
     useEffect(()=>{
-        if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
-          if(FormDatRed[FormDatRed.length-1][0] != undefined){
-             const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
-             const secId = ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
-             setObj((prevObj) => {
-              return {
-                ...prevObj,
-                [secId]: FormDatRed[FormDatRed.length - 1],
-              };
-            });
-          }
-        }
+        // if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
+        //   if(FormDatRed[FormDatRed.length-1][0] != undefined){
+        //      const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
+        //      const secId = ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
+        //      setObj((prevObj) => {
+        //       return {
+        //         ...prevObj,
+        //         [secId]: FormDatRed[FormDatRed.length - 1],
+        //       };
+        //     });
+        //   }
+        // }
       },[FormDatRed])
 
       console.log('finalObj',Object.values(obj))
@@ -57,8 +56,9 @@ const Form = () => {
 
     const width = '75vw'
 
+
   return (
-<div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
+    <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%'}} className='bg-light'>
 {
   SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() :  MainObject.SectionNav(SectionRed.val,GridRed.val,setdefaultVal)
@@ -76,4 +76,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default FormConf

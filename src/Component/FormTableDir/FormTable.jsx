@@ -72,6 +72,7 @@ const FormTable = ({col,dData}) => {
   
   
         useEffect(()=>{
+          console.log(data)
               dispatch(FormDataAct([...FormDatRed,data]))    
        //   if(data.length > 0){
         //   setfinalArr((old)=>{

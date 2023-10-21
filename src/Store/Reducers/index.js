@@ -5,6 +5,9 @@ import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
 import { FormIdRed,FormDatRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
+import { ModalSectionRed } from "./ModalSectionRed";
+import { ModalGridRed } from "./ModalGridRed";
+import { ModalColumnRed } from "./ModalColumnRed";
 
 const rootReducers = combineReducers({
     SectionRed, 
@@ -13,7 +16,10 @@ const rootReducers = combineReducers({
     NavBarRed,
     FormIdRed,
     FormDatRed,
-    GridRed
+    GridRed,
+    ModalSectionRed,
+    ModalGridRed,
+    ModalColumnRed
     });
 
 export default rootReducers

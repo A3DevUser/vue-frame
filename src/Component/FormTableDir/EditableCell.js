@@ -3,6 +3,7 @@ import TestComp from "../Elements/TestComp"
 import React, { useEffect, useState } from "react"
 import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
+import ModalForm from "../ModalForm"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -208,7 +209,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       setValue(modifiedFile.name )
       // const formData = new FormData()
       // formData.append('file',modifiedFile)
-      updateMyData(index, id,modifiedFile.name,modifiedFile,parentId.column.parent.id)
+      updateMyData(index, id,modifiedFile.name,modifiedFile)
     }
 
     const handleDownload = (downTxt) =>{
@@ -359,6 +360,6 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     return <div>
       {MainObject.modalButton('Actions', handleFunc)}
-      {MainObject.modalpop('','This is body',show,handleFunc)}
+      {MainObject.modalpop('',<><ModalForm/></>,show,handleFunc)}
     </div>
   }

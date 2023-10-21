@@ -1,4 +1,5 @@
-import React from 'react'
+import { MainObject } from './Component/Elements/commonFun'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router'
 import MultiDropDown from './Component/Elements/MultiDropDown'
 import Form from './Component/Form'
@@ -7,8 +8,21 @@ import Navbar from './Component/NavBar'
 import TabsBar from './Component/Tabs'
 import FormConf from './Component/FormConf'
 const App = () => {
+
+  const [show,setshow] = useState(false)
+
+  const handleFunc = ()=>{
+    setshow(!show)
+  }
   return (
     <div>
+
+      {/* {
+
+        MainObject.modalButton('title',handleFunc)
+      }{
+        MainObject.modalpop('model title',<Form/>,show,handleFunc)
+      } */}
 {/* <MultiDropDown/> */}
       <Navbar/>
       {/* <TabsBar/> */}

@@ -8,6 +8,9 @@ import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
 import { ConfGridRed } from "./ConfGridRed";
+import { ModalSectionRed } from "./ModalSectionRed";
+import { ModalGridRed } from "./ModalGridRed";
+import { ModalColumnRed } from "./ModalColumnRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -19,7 +22,10 @@ const rootReducers = combineReducers({
     GridRed,
     ConfSectionRed,
     ConfColumnRed,
-    ConfGridRed
+    ConfGridRed,
+    ModalSectionRed,
+    ModalGridRed,
+    ModalColumnRed
     });
 
 export default rootReducers

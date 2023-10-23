@@ -1,9 +1,11 @@
 import GridForm from "../GridForm"
-import TestComp from "../Elements/TestComp"
+import TestComp from "../../TestComp"
 import React, { useEffect, useState } from "react"
 import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
 import ModalForm from "../ModalForm"
+import { useDispatch, useSelector } from "react-redux"
+import { FormDataAct } from "../../Store/Actions/GeneralStates"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -352,10 +354,15 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     rowObj : rowObj,
   }) => {
 
+    const dispatch = useDispatch()
     const[show,setshow] = useState(false)
+    const FormDatRed = useSelector((state) => state.FormDatRed)
+
 
     const handleFunc = () => {
       setshow(!show)
+      dispatch(FormDataAct([rowObj.original]))    
+
     }
     
     return <div>

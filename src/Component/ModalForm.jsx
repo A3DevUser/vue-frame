@@ -32,20 +32,27 @@ const ModalForm = () => {
   //   console.log('modal',ModalColumnRed)
   // },[ModalSectionRed])
   useEffect(()=>{
-      // if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
-      //   if(FormDatRed[FormDatRed.length-1][0] != undefined){
-      //      const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
-      //      const secId = ModalColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
-      //      setObj((prevObj) => {
-      //       return {
-      //         ...prevObj,
-      //         [secId]: FormDatRed[FormDatRed.length - 1],
-      //       };
-      //     });
-      //   }
-      // }
-    },[])
+    // console.log('finalObj',ModalColumnRed)
+    // console.log('finalObj',Array.isArray(FormDatRed))
+    // console.log('finalObj',FormDatRed)
+    // console.log(
+    //   'finalObj',FormDatRed.length
+    // )
+    console.log('finalObj',FormDatRed)
+    if(FormDatRed.length > 2){
+      const data = FormDatRed[FormDatRed.length - 1]
+      const colList = Object.keys(FormDatRed[FormDatRed.length - 1][0]);
+       const grdId =ModalColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor)})[0].gridId
 
+       setObj((prev)=>{return{
+        ...prev,
+        [grdId] : data.map((res)=>{return {...res,gridId:grdId,...FormDatRed[0]}})
+       }})
+    }
+
+    },[FormDatRed])
+console.log('finalObj',[[FormDatRed[0]],...Object.values(obj)])
+console.log('finalObj',JSON.stringify(Object.values(obj)))
 
   return (
 <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>

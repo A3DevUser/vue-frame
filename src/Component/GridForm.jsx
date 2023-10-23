@@ -18,10 +18,15 @@ const GridForm = () => {
 
   return (
     <div>
-        {console.log(ColumnRed.val)}
+        {/* {console.log(
+          JSON.stringify(ColumnRed.val.map((res)=>{return res.accessor}).reduce((acc,val,ind)=>{
+          acc[val] = ''
+          return acc
+        },{}))
+        )} */}
       {
         ColumnRed.loading ? MainObject.loader() :
-        <div>{ MainObject.table(ColumnRed.val,[{col1 :'',col2:''}],'') }</div>
+        <div>{ MainObject.table(ColumnRed.val,[{"auditId":"aud-00001","testTitle":"test title","testId":"testId","testRefNo":"testId","accountNumber":"acc Number","remark":"remarks","result":"","customerName":"","customerId":"","stage":"","status":"","action":"","attacment":"","nextApp":"","org":"","role":"","selectUser":"","currentUser":""}],'') }</div>
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }
     </div>

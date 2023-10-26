@@ -33,18 +33,23 @@ const FormConf = () => {
     // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
     console.log('newObj',obj)
     useEffect(()=>{
-        // if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
-        //   if(FormDatRed[FormDatRed.length-1][0] != undefined){
-        //      const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
-        //      const secId = ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
-        //      setObj((prevObj) => {
-        //       return {
-        //         ...prevObj,
-        //         [secId]: FormDatRed[FormDatRed.length - 1],
-        //       };
-        //     });
-        //   }
-        // }
+      // console.log('finalObj',ModalColumnRed)
+      // console.log('finalObj',Array.isArray(FormDatRed))
+      // console.log('finalObj',FormDatRed)
+      // console.log(
+      //   'finalObj',FormDatRed.length
+      // )
+      if(FormDatRed.length > 2){
+        const data = FormDatRed[FormDatRed.length - 1]
+        const colList = Object.keys(FormDatRed[FormDatRed.length - 1][0]);
+         const grdId =ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor)})[0].gridId
+  
+         setObj((prev)=>{return{
+          ...prev,
+          [grdId] : data.map((res)=>{return {...res,gridId:grdId,...FormDatRed[0]}})
+         }})
+      }
+  
       },[FormDatRed])
 
       console.log('finalObj',Object.values(obj))
@@ -55,6 +60,10 @@ const FormConf = () => {
     },[GridRed])
 
     const width = '75vw'
+
+    const handleSave = (val) =>{
+      console.log('gridData',GridRed.val)
+    }
 
 
   return (
@@ -68,9 +77,14 @@ const FormConf = () => {
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
-      defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val,[],defaultVal,setdefaultVal)
+      defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val,[],defaultVal,setdefaultVal,handleSave)
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
+  {/* <span className='mx-5 my-2' style={{float:'right'}}>
+  {
+    MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Save'},(e)=>handleSave(e.target))
+  }
+  </span> */}
   </div>
     </div>
   )

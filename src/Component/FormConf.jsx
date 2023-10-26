@@ -20,7 +20,9 @@ const FormConf = () => {
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});
-
+    function funSave() {
+      console.log('finalObj',Object.values(obj))
+    }
 
     useEffect(()=>{
         dispatch(FetchConfSectionData('FORM-105'))
@@ -33,21 +35,27 @@ const FormConf = () => {
     // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
     console.log('newObj',obj)
     useEffect(()=>{
-        // if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
-        //   if(FormDatRed[FormDatRed.length-1][0] != undefined){
-        //      const colList = Object.keys(FormDatRed[FormDatRed.length-1][0])
-        //      const secId = ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor) })[0].subSecId
-        //      setObj((prevObj) => {
-        //       return {
-        //         ...prevObj,
-        //         [secId]: FormDatRed[FormDatRed.length - 1],
-        //       };
-        //     });
-        //   }
-        // }
+      // console.log('finalObj',ModalColumnRed)
+      // console.log('finalObj',Array.isArray(FormDatRed))
+      // console.log('finalObj',FormDatRed)
+      // console.log(
+      //   'finalObj',FormDatRed.length
+      // )
+      console.log('finalObj',FormDatRed)
+      if(FormDatRed.length > 2){
+        const data = FormDatRed[FormDatRed.length - 1]
+        const colList = Object.keys(FormDatRed[FormDatRed.length - 1][0]);
+         const grdId =ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor)})[0].gridId
+  
+         setObj((prev)=>{return{
+          ...prev,
+          [grdId] : data.map((res)=>{return {...res,gridId:grdId,...FormDatRed[0]}})
+         }})
+      }
+  
       },[FormDatRed])
 
-      console.log('finalObj',Object.values(obj))
+      //console.log('finalObj',Object.values(obj))
 
     useEffect(()=>{
       console.log(SectionRed)
@@ -58,6 +66,8 @@ const FormConf = () => {
 
 
   return (
+    <div>
+      <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%'}} className='bg-light'>
 {
@@ -65,13 +75,22 @@ const FormConf = () => {
   }
   </div>
   <div style={{flex: '95%',height:'80vh', maxHeight:'80vh', overflow:'scroll'}} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
+
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
       defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val,[],defaultVal,setdefaultVal)
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
+   <span style={{float: 'right'}} className='mx-5 my-2'> {
+    MainObject.button({classNameVal: "btn btn-primary",
+                        widthVal: "7vw",
+                        heightVal: "7vh",
+                        btnName: "Save"},funSave)
+  }</span>
+
   </div>
+    </div>
     </div>
   )
 }

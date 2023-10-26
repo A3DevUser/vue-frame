@@ -20,7 +20,9 @@ const FormConf = () => {
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});
-
+    function funSave() {
+      console.log('finalObj',Object.values(obj))
+    }
 
     useEffect(()=>{
         dispatch(FetchConfSectionData('FORM-105'))
@@ -52,7 +54,7 @@ const FormConf = () => {
   
       },[FormDatRed])
 
-      console.log('finalObj',Object.values(obj))
+      //console.log('finalObj',Object.values(obj))
 
     useEffect(()=>{
       console.log(SectionRed)
@@ -67,6 +69,8 @@ const FormConf = () => {
 
 
   return (
+    <div>
+      <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%'}} className='bg-light'>
 {
@@ -74,6 +78,7 @@ const FormConf = () => {
   }
   </div>
   <div style={{flex: '95%',height:'80vh', maxHeight:'80vh', overflow:'scroll'}} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
+
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
@@ -86,6 +91,7 @@ const FormConf = () => {
   }
   </span> */}
   </div>
+    </div>
     </div>
   )
 }

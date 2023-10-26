@@ -13,7 +13,12 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             <div className='tr' {...headerGroup.getHeaderGroupProps()}>
                 {
                     headerGroup.headers.map((column)=>(
-                        <div className='th' {...column.getHeaderProps()}>{column.render('Header')}</div>
+                        <div className='th' {...column.getHeaderProps()}>{column.render('Header')}
+                                            <div
+                      {...column.getResizerProps()}
+                      className={`resizer`}
+                    />
+                        </div>
                     ))
                 }
             </div>

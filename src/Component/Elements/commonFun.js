@@ -25,8 +25,8 @@ export const MainObject = {
         }
     },
 
-    table : (col,data,width) =>{
-         return <FormTable col={col} dData={data} width={width}/> },
+    table : (col,data,isMrow) =>{
+         return <FormTable col={col} dData={data} gridData={isMrow}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 

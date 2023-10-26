@@ -61,7 +61,9 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow) =>{
       return{
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell : ({cell}) =>{ return<EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row}  /> }
+        Cell : ({cell}) =>{ return<EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row}  /> },
+        width : res.width,
+        sticky : res.sticky
       }
     }
     else{

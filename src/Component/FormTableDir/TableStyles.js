@@ -56,6 +56,22 @@ export const Styles = styled.div`
         }
       }
     }
+
+    .resizer {
+      display: inline-block;
+      width: 10px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(50%);
+      z-index: 1;
+      /* prevent scroll on touch devices */
+      touch-action: none;
+    }
+    
+    
+
  
     .th{
       padding: 5px;
@@ -219,6 +235,35 @@ export const PreStyles = styled.div`
  
       [data-sticky-first-right-td] {
         box-shadow: -2px 0px 3px #ccc;
+      }
+    }
+  }
+`;
+
+export const VertStyles = styled.div`
+  .table {
+    border: 1px solid #ddd;
+
+    .tr {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      
+      .td {
+        flex: 1;
+        padding: 5px;
+        border-right: 1px solid #ddd;
+        background-color: white;
+        color: black;
+        text-align: left;
+        overflow: hidden;
+        
+        :last-child {
+          border-right: 0;
+        }
+      }
+
+      :last-child {
+        border-bottom: 0;
       }
     }
   }

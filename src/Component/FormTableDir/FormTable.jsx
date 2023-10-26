@@ -1,14 +1,16 @@
-import  { useEffect, useState } from 'react'
-import { useBlockLayout, useTable } from 'react-table'
+import  { useEffect, useMemo, useState } from 'react'
+import { useBlockLayout, useResizeColumns, useTable } from 'react-table'
 import './TableStyle.css'
-import { Styles,VerticalTableStyles } from './TableStyles'
+import { Styles,VerticalTableStyles, VertStyles } from './TableStyles'
 import { ColumnHeader } from './ColumnHeader'
 import TableStruc from './TableStruc'
 import { useSticky } from 'react-table-sticky'
 import { useDispatch, useSelector } from 'react-redux'
 import { FormDataAct } from '../../Store/Actions/GeneralStates'
+import { EditableActionCell } from './EditableCell'
+import VertTableStruc from './VertTableStruc'
 
-const FormTable = ({col,dData}) => {
+const FormTable = ({col,dData,gridData}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
@@ -17,7 +19,6 @@ const FormTable = ({col,dData}) => {
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
-  
 
     const dispatch = useDispatch()
   
@@ -63,11 +64,30 @@ const FormTable = ({col,dData}) => {
           })
       }
     }
-      const[columns,setcolumns]=useState(ColumnHeader(col,updateMyData,'',addAndDeleteRow))
-      console.log(ColumnHeader(col,updateMyData))
+      const[columns,setcolumns]=useState(
+        gridData =='true' ?
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
+        {Header : "Remove",
+        accessor : 'remove',
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+      }]
+       :
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow)
+    
+    )
+      // console.log(ColumnHeader(col,updateMyData))
 
       useEffect(()=>{
-        setcolumns(ColumnHeader(col,updateMyData,'',addAndDeleteRow))
+        setcolumns(
+          gridData =='true' ?
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
+        {Header : "Remove",
+        accessor : 'remove',
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+      }]
+       :
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow)
+      )
       },[col])
   
   
@@ -90,6 +110,15 @@ const FormTable = ({col,dData}) => {
         //   })
         //   }
           },[data])
+
+          const defaultColumn = useMemo(
+            () => ({
+              // minWidth: 30,
+              // width: 150,
+              // maxWidth: 400
+            }),
+            []
+          );
   
           useEffect(()=>{
             console.log(finalArr)
@@ -103,18 +132,19 @@ const FormTable = ({col,dData}) => {
   
       const tableInstance = useTable({
           columns,
-          data
-      },useBlockLayout,useSticky)
+          data,
+          defaultColumn
+      },useBlockLayout,useResizeColumns,useSticky)
   
   const {getTableProps,getTableBodyProps,headerGroups,prepareRow,rows} = tableInstance
     return (
       <div>
-        <VerticalTableStyles>
-        <button className='btn btn-primary mx-5 my-2' style={{float:'right', display : col.some(res => res.cellType =='addRemove') ? 'block' : 'none' }}
+        <Styles>
+        <button className='btn btn-primary mx-5 my-2' style={{float:'right', display : gridData =='true' ? 'block' : 'none' }}
         onClick={handleAddRow}
         >Add</button>
         <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} />
-        </VerticalTableStyles>
+        </Styles>
     </div>
   )
 }

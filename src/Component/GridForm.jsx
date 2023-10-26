@@ -26,7 +26,7 @@ const GridForm = () => {
         )} */}
       {
         ColumnRed.loading ? MainObject.loader() :
-        <div>{ MainObject.table(ColumnRed.val,[{"auditId":"aud-00001","testTitle":"test title","testId":"testId","testRefNo":"testId","accountNumber":"acc Number","remark":"remarks","result":"","customerName":"","customerId":"","stage":"","status":"","action":"","attacment":"","nextApp":"","org":"","role":"","selectUser":"","currentUser":""}],'') }</div>
+        <div>{ MainObject.table(ColumnRed.val.sort((a,b)=>{return a.number - b.number}),[{"auditId":"aud-00001","testTitle":"test title","testId":"testId","testRefNo":"testId","accountNumber":"acc Number","remark":"remarks","result":"","customerName":"","customerId":"","stage":"","status":"","action":"","attacment":"","nextApp":"","org":"","role":"","selectUser":"","currentUser":""},{"auditId":"aud-00020","testTitle":"test title","testId":"testId","testRefNo":"testId","accountNumber":"acc Number","remark":"remarks","result":"","customerName":"","customerId":"","stage":"","status":"","action":"","attacment":"","nextApp":"","org":"","role":"","selectUser":"","currentUser":""}],'') }</div>
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }
     </div>

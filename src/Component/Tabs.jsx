@@ -16,7 +16,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                     <div style={{maxWidth : subRes.width, overflow:'scroll', maxHeight:'50vh'}}>
                         {
                         columnData&&
-                        MainObject.table(columnData.filter((fil)=>{ return fil.gridId == subRes.gridId}),data,res.width)
+                        MainObject.table(columnData.filter((fil)=>{ return fil.gridId == subRes.gridId}),data,subRes.isMrow)
                     }
                     </div></>)
                 })

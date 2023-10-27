@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MainObject } from './Elements/commonFun';
 // import FormTable from './FormTableDir/FormTable';
-
 import { FetchConfColumnData } from '../Store/Actions/ConfColumn'
 import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
 import { FetchConfSectionData } from '../Store/Actions/ConfSection'
+import { FormConfData } from '../Store/Actions/SendConfData';
+import { useNavigate } from 'react-router';
 
 
 const FormConf = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const SectionRed = useSelector((state)=>state.ConfSectionRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
     const GridRed = useSelector((state)=>state.ConfGridRed)
@@ -30,28 +32,8 @@ const FormConf = () => {
         dispatch(FetchConfColumnData('FORM-105'))
     },[FormIdRed])
 
-      console.log('location',window.location.pathname)
-    // let obj = {};
-    // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
-    console.log('newObj',obj)
     useEffect(()=>{
-      // console.log('finalObj',ModalColumnRed)
-      // console.log('finalObj',Array.isArray(FormDatRed))
-      // console.log('finalObj',FormDatRed)
-      // console.log(
-      //   'finalObj',FormDatRed.length
-      // )
-      if(FormDatRed.length > 2){
-        const data = FormDatRed[FormDatRed.length - 1]
-        const colList = Object.keys(FormDatRed[FormDatRed.length - 1][0]);
-         const grdId =ColumnRed.val.filter((fil)=>{return colList.includes(fil.accessor)})[0].gridId
-  
-         setObj((prev)=>{return{
-          ...prev,
-          [grdId] : data.map((res)=>{return {...res,gridId:grdId,...FormDatRed[0]}})
-         }})
-      }
-  
+      console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
       },[FormDatRed])
 
       //console.log('finalObj',Object.values(obj))
@@ -64,7 +46,10 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      console.log('gridData',GridRed.val)
+      const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
+gridData.forEach((res)=>{
+  dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
+})
     }
 
 

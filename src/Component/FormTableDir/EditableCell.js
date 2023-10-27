@@ -332,6 +332,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     addAndDeleteRow, 
     colObj:colObj,
     rowObj : rowObj,
+    data :data
   }) => {
 
     const handleClick = (act) =>{
@@ -343,7 +344,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
   
     return <div>
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
-      <button className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
+      <button disabled={data > 1 ? false : true} className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
     </div>
   }
 

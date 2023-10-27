@@ -6,7 +6,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
   return (
     <div>
 
-      <div {...getTableProps()} className="table sticky m-3" style={{maxHeight :'40vh', maxWidth:'95vw' , overflow:'scroll' }}>
+      <div {...getTableProps()} className="table sticky mx-3 my-1" style={{maxHeight :'45vh', maxWidth:'95vw' , overflow:'scroll' }}>
         <div className='header'>
             {
                 headerGroups.map((headerGroup)=>(

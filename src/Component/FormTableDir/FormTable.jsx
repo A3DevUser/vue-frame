@@ -65,10 +65,11 @@ const FormTable = ({col,dData,gridData}) => {
       }
     }
       const[columns,setcolumns]=useState(
-        gridData =='true' ?
+        gridData.isMrow =='true' ?
           [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
         {Header : "Remove",
         accessor : 'remove',
+        sticky : 'right',
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
       }]
        :
@@ -79,11 +80,12 @@ const FormTable = ({col,dData,gridData}) => {
 
       useEffect(()=>{
         setcolumns(
-          gridData =='true' ?
+          gridData.isMrow =='true' ?
           [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
         {Header : "Remove",
         accessor : 'remove',
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+        sticky : 'right',
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length}/>},
       }]
        :
        ColumnHeader(col,updateMyData,'',addAndDeleteRow)
@@ -92,8 +94,8 @@ const FormTable = ({col,dData,gridData}) => {
   
   
         useEffect(()=>{
-          console.log(data)
-              dispatch(FormDataAct([...FormDatRed,data]))    
+          console.log('',data)
+              dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
        //   if(data.length > 0){
         //   setfinalArr((old)=>{
         //     if(old.some((sres)=>{return sres.id == data[chngRow].id})){
@@ -140,9 +142,14 @@ const FormTable = ({col,dData,gridData}) => {
     return (
       <div>
         <Styles>
-        <button className='btn btn-primary mx-5 my-2' style={{float:'right', display : gridData =='true' ? 'block' : 'none' }}
+          <div style={{display:'flex'}}>
+        <h6 className="mx-5" id={gridData.gridId}>{gridData.gridName}</h6>
+        <div style={{flex:'1'}}>
+        <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
         onClick={handleAddRow}
         >Add</button>
+                </div>
+          </div>
         <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} />
         </Styles>
     </div>

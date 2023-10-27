@@ -21,10 +21,10 @@ export const ConfError = (getConfData)=>{
     }
 }
 
-export const FormConfData = (FormConfInfo)=>{
+export const FormConfData = (api,FormConfInfo)=>{
     return function(dispatch){
         dispatch(ConfReq())
-        axios.post(`http://localhost:8080/VF/setFormData`,FormConfInfo)
+        axios.post(api,FormConfInfo)
         .then((res)=>{
             const FormDtls = res.data.map((Dtls=>Dtls))
             dispatch(ConfSuccess(FormDtls))

@@ -8,8 +8,8 @@ export const MainObject = {
     alert : (alertVal) => {
         return alert(alertVal)
     },
-    button : (btnInfo,funButton) => {
-        return <button className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal}} onClick={funButton}>{btnInfo.btnName}</button>
+    button : (btnInfo,funButton,i) => {
+        return <button key={i} className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal}} onClick={funButton}>{btnInfo.btnName}</button>
     },
     input : (inputInfo,funInput) => {
         if(inputInfo.typeVal == 'dropDown'){
@@ -25,8 +25,8 @@ export const MainObject = {
         }
     },
 
-    table : (col,data,isMrow) =>{
-         return <FormTable col={col} dData={data} gridData={isMrow}/> },
+    table : (col,data,gridData) =>{
+         return <FormTable col={col} dData={data} gridData={gridData}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 

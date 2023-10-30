@@ -1,8 +1,8 @@
 import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
 
-export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow) =>{
+export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData) =>{
 
-  return colData.map((res)=>{
+  return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
     if(res.cellType==='textArea'){
       return {
         Header : res.fieldName,

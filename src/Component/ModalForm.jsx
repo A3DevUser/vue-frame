@@ -21,9 +21,9 @@ const ModalForm = () => {
 
 
   useEffect(()=>{
-      dispatch(FetchModalSectionData('FORM-101'))
-      dispatch(FetchModalGridData('FORM-101'))
-      dispatch(FetchModalColumnData('FORM-101'))
+      dispatch(FetchModalSectionData(FormIdRed))
+      dispatch(FetchModalGridData(FormIdRed))
+      dispatch(FetchModalColumnData(FormIdRed))
   },[])
 
   // useEffect(()=>{

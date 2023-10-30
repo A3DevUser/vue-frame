@@ -66,14 +66,14 @@ const FormTable = ({col,dData,gridData}) => {
     }
       const[columns,setcolumns]=useState(
         gridData.isMrow =='true' ?
-          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData),
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
       }]
        :
-       ColumnHeader(col,updateMyData,'',addAndDeleteRow)
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData)
     
     )
       // console.log(ColumnHeader(col,updateMyData))
@@ -81,14 +81,14 @@ const FormTable = ({col,dData,gridData}) => {
       useEffect(()=>{
         setcolumns(
           gridData.isMrow =='true' ?
-          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow),
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData),
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length}/>},
       }]
        :
-       ColumnHeader(col,updateMyData,'',addAndDeleteRow)
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData)
       )
       },[col])
   
@@ -121,6 +121,9 @@ const FormTable = ({col,dData,gridData}) => {
             }),
             []
           );
+          useEffect(()=>{
+            console.log('tableColumns',columns)
+          },[columns])
   
           useEffect(()=>{
             console.log(finalArr)

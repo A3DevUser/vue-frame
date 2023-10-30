@@ -341,10 +341,10 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       console.log(Obj)
       addAndDeleteRow(index,Obj,act)
     }
-  
+  console.log(data)
     return <div>
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
-      <button disabled={data > 1 ? false : true} className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
+      <button className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
     </div>
   }
 

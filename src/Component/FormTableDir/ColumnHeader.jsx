@@ -1,6 +1,6 @@
 import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
 
-export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData) =>{
+export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data) =>{
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
     if(res.cellType==='textArea'){
@@ -53,7 +53,7 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+        Cell : ({cell}) =>{return <EditableActionCell abc={cell} colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
         width : res.width,
         sticky : res.sticky
       }

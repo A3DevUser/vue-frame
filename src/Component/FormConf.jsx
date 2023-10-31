@@ -18,6 +18,7 @@ const FormConf = () => {
     const GridRed = useSelector((state)=>state.ConfGridRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const FormDatRed = useSelector((state) => state.FormDatRed)
+    const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
 
 
     const [defaultVal,setdefaultVal] =useState([])
@@ -43,15 +44,25 @@ const FormConf = () => {
       console.log('GridRed',GridRed)
     },[GridRed])
 
+    useEffect(()=>{
+      console.log('saveGrid',SendConfDataRed)
+    },[SendConfDataRed])
+
     const width = '75vw'
 
     const handleSave = (val) =>{
-      const gridId=GridRed.val.filter((fil)=>{return fil.secId==val})[0].gridId
-      console.log('handleSave',JSON.stringify(FormDatRed[gridId]))
-//       const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
-// gridData.forEach((res)=>{
-//   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
-// })
+      // const gridId=GridRed.val.filter((fil)=>{return fil.secId==val})[0].gridId
+      // console.log('handleSave',JSON.stringify(FormDatRed[gridId]))
+      // const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
+      // gridData.forEach((res)=>{
+      //   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
+      // })
+      const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
+      const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
+      const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
+      dispatch(FormConfData(secApi,FormData))
+      // console.log('Save Grid',FormDatRed[gridIdVal])
+      console.log('Save Grid',secApi)
     }
 
 

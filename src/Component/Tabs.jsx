@@ -3,6 +3,7 @@ import { MainObject } from "./Elements/commonFun"
 
 function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
     // console.log('columnData',columnData)
+
     return <Tabs activeKey={defaultVal ? defaultVal[0] : ''} id="fill-tab-example" className="mb-3 m-2 bg-gray" fill>
         
         {

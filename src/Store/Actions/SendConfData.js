@@ -26,9 +26,8 @@ export const FormConfData = (api,FormConfInfo)=>{
         dispatch(ConfReq())
         axios.post(api,FormConfInfo)
         .then((res)=>{
-            const FormDtls = res.data.map((Dtls=>Dtls))
-            dispatch(ConfSuccess(FormDtls))
-            // console.log(JSON.stringify(res.data))
+            // const FormDtls = res.data.map((Dtls=>Dtls))
+            dispatch(ConfSuccess(res.data))
         })
         .catch((err)=>{
             dispatch(ConfError(err))

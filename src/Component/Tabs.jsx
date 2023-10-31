@@ -12,13 +12,20 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
+                    let dataObj ={}
+                    // columnData.filter((fil)=>{return fil.gridId == subRes.gridId}).
+                    columnData.forEach((fe)=>{
+                        if(fe.gridId==subRes.gridId){
+                            dataObj[fe.accessor]=''
+                        }
+                        })
                     return (<>
                     <div style={{maxWidth : subRes.width}}>
                         {
                         columnData&&
-                        MainObject.table(columnData,data,subRes)
+                        MainObject.table(columnData,[dataObj],subRes)
                     }
-                      <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') && accordionVal.length -1 == i ? 'block' : 'none'}}>
+                      <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
   {
     MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Save'},()=>{handleSave(subRes.secId)},i)
   }

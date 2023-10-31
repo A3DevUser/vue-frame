@@ -94,7 +94,6 @@ const FormTable = ({col,dData,gridData}) => {
   
   
         useEffect(()=>{
-          console.log('',data.length)
               dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
        //   if(data.length > 0){
         //   setfinalArr((old)=>{

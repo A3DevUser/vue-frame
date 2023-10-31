@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { MainObject } from './Elements/commonFun' 
 import { useDispatch,useSelector } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, NavDropdown } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { FetchNavbarData } from '../Store/Actions/NavBar'
 import { FormIdAct, ResetAct } from '../Store/Actions/GeneralStates'
 import { Modal } from 'react-bootstrap'
+import Dropdown from 'react-dropdown';
+import './Nabar.css'
 
 
 const Navbar = () => {
@@ -20,7 +22,6 @@ const Navbar = () => {
     },[])
 
     const handleNavigate = (res) =>{
-        dispatch(ResetAct())
         dispatch(FormIdAct(res.formId))
         navigate(res.navigate)
     }
@@ -28,6 +29,7 @@ const Navbar = () => {
     function funProfile() {
         setshow(!show)
     }
+
 return (
 <>
 <nav 
@@ -42,10 +44,15 @@ style={{backgroundColor:'#131D40'}}
             return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}}/>
 
         }else if(res.navType=='conf'){
-            return <button onClick={()=>{handleNavigate(res)}} key={i} 
-            className=' btn btn-sm my-1 mx-2 p-2' 
-            style={{backgroundColor:'#131D40', color:'white', float:'right'}}
-            >{res.navName}</button>
+            return<NavDropdown className='ddClass' title={res.navName}>
+                <NavDropdown.Item onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
+
+            </NavDropdown>
+            // <button onClick={()=>{handleNavigate(res)}} key={i} 
+            // className=' btn btn-sm my-1 mx-2 p-2' 
+            // style={{backgroundColor:'#131D40', color:'white', float:'right'}}
+            // >{res.navName}</button>
         }
         else{
             return <button onClick={()=>{handleNavigate(res)}} key={i} 

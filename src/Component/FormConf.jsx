@@ -27,9 +27,9 @@ const FormConf = () => {
     }
 
     useEffect(()=>{
-        dispatch(FetchConfSectionData('FORM-105'))
-        dispatch(FetchConfGridData('FORM-105'))
-        dispatch(FetchConfColumnData('FORM-105'))
+        dispatch(FetchConfSectionData(FormIdRed))
+        dispatch(FetchConfGridData(FormIdRed))
+        dispatch(FetchConfColumnData(FormIdRed))
     },[FormIdRed])
 
     useEffect(()=>{
@@ -46,10 +46,12 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
-gridData.forEach((res)=>{
-  dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
-})
+      const gridId=GridRed.val.filter((fil)=>{return fil.secId==val})[0].gridId
+      console.log('handleSave',JSON.stringify(FormDatRed[gridId]))
+//       const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
+// gridData.forEach((res)=>{
+//   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
+// })
     }
 
 

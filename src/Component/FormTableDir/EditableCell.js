@@ -6,6 +6,7 @@ import Form from "../Form"
 import ModalForm from "../ModalForm"
 import { useDispatch, useSelector } from "react-redux"
 import { FormDataAct } from "../../Store/Actions/GeneralStates"
+import { FetchDropValData } from "../../Store/Actions/DropVal"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -42,7 +43,7 @@ export const EditableCell = ({
     row:  index ,
     column:  id ,
     updateMyData,
-    dropDown ,
+    dropDown : dropDown ,
     colObj:colObj,
     rowObj : rowObj,
     parentId
@@ -55,24 +56,32 @@ export const EditableCell = ({
     }
   
     const onBlur = () => {
-      updateMyData(index, id, value,null,parentId.column.parent.id)
+      updateMyData(index, id, value,null,'')
     }
   
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
 
-    let opt = []
-    if(dropDown){
-      opt = dropDown.filter((fil,i)=>{return i==index})[0].dropDown.split(',')
+    // let opt = []
+    // if(dropDown){
+    //   opt = dropDown.filter((fil,i)=>{return i==index})[0].dropDown.split(',')
+    // }
+    const dispatch = useDispatch()
+    const DropValRed = useSelector((state) => state.DropValRed)
+
+    function handleOnfocus() {
+      alert(id)
+      dispatch(FetchDropValData())
     }
 
+    useEffect(()=>{console.log("New Api Val",DropValRed)},[DropValRed])
   
-    return <select value={value} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+    return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-        opt.map((res,i)=>{
-            return <option key={i}>{res}</option>
+       DropValRed.loading ? MainObject.loader() : DropValRed.val.map((res,i)=>{
+            return <option key={i} value={res.id}>{res.name}</option>
         })
 
       }

@@ -74,6 +74,7 @@ export const EditableCell = ({
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal))
     }
 
+
     useEffect(()=>{console.log("New Api Val",DropValRed)},[DropValRed])
   
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>

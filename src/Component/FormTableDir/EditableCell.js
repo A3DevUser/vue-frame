@@ -70,9 +70,9 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
 
     function handleOnfocus() {
-      console.log("to get id",DropValRed)
-      dispatch(FetchDropValData())
+          dispatch(FetchDropValData())
     }
+
 
     useEffect(()=>{console.log("New Api Val",DropValRed)},[DropValRed])
   

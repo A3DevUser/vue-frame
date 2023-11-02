@@ -21,17 +21,18 @@ const DropValErr = (val) =>{
     }
 };
 
-export const FetchDropValData = (FormID,GridId,ColId) =>{
-    return (dispatch)=>{
-        dispatch(DropValReq());
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-        .then((res)=>{
-            dispatch(DropValSuccess(res.data))
-        })
-        .catch((err)=>{
-            dispatch(DropValErr(err))
-        })
-    }
+export const FetchDropValData = (ColId) =>{
+    alert(ColId)
+    // return (dispatch)=>{
+    //     dispatch(DropValReq());
+    //     axios.get(`https://jsonplaceholder.typicode.com/users`)
+    //     .then((res)=>{
+    //         dispatch(DropValSuccess(res.data))
+    //     })
+    //     .catch((err)=>{
+    //         dispatch(DropValErr(err))
+    //     })
+    // }
 
 }
 

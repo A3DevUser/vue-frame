@@ -15,7 +15,7 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={cell} />},
+        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={gridData.gridId} />},
         width : res.width,
         sticky : res.sticky
 

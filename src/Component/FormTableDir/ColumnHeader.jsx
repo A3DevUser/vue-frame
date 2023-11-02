@@ -13,11 +13,14 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
         sticky : res.sticky
       }
     }else if(res.cellType==='dropDown'){
-      // console.log("to get id",res.columnId)
+      let formIdVal = res.formId
+      let gridIdVal = res.gridId
+      let colIdVal = res.columnId
+      // console.log("to get id",res.formId)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={res.columnId} />},
+        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal}} />},
         width : res.width,
         sticky : res.sticky
 

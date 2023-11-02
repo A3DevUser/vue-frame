@@ -71,7 +71,7 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
 
     function handleOnfocus() {
-      alert(id)
+      console.log("to get id",DropValRed)
       dispatch(FetchDropValData())
     }
 

@@ -22,6 +22,7 @@ export const ConfError = (getConfData)=>{
 }
 
 export const FormConfData = (api,FormConfInfo)=>{
+    console.log(api,FormConfInfo)
     return function(dispatch){
         dispatch(ConfReq())
         axios.post(api,FormConfInfo)

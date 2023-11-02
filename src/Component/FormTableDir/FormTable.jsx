@@ -145,7 +145,7 @@ const FormTable = ({col,dData,gridData}) => {
       <div>
         <Styles>
           <div style={{display:'flex'}}>
-        <h6 className="mx-5" id={gridData.gridId}>{gridData.gridName}</h6>
+        <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
         <div style={{flex:'1'}}>
         <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
         onClick={handleAddRow}

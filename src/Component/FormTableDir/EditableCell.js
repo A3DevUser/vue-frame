@@ -22,7 +22,6 @@ export const EditableCell = ({
     }
   
     const onBlur = () => {
-      console.log(id)
       updateMyData(index, id, value,null)
     }
   

@@ -3,6 +3,7 @@ import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAtt
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data) =>{
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
+    //console.log("to get id",res)
     if(res.cellType==='textArea'){
       return {
         Header : res.fieldName,
@@ -12,10 +13,11 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
         sticky : res.sticky
       }
     }else if(res.cellType==='dropDown'){
+      // console.log("to get id",res.columnId)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={gridData.gridId} />},
+        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={res.columnId} />},
         width : res.width,
         sticky : res.sticky
 

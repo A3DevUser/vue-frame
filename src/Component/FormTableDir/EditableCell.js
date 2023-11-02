@@ -22,7 +22,6 @@ export const EditableCell = ({
     }
   
     const onBlur = () => {
-      console.log(id)
       updateMyData(index, id, value,null)
     }
   
@@ -71,8 +70,7 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
 
     function handleOnfocus() {
-      alert(id)
-      dispatch(FetchDropValData())
+        dispatch(FetchDropValData())
     }
 
     useEffect(()=>{console.log("New Api Val",DropValRed)},[DropValRed])

@@ -45,7 +45,7 @@ export const EditableCell = ({
     dropDown : dropDown ,
     colObj:colObj,
     rowObj : rowObj,
-    parentId
+    parentId 
 
   }) => {
     const [value, setValue] = React.useState(initialValue)
@@ -70,7 +70,7 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
 
     function handleOnfocus() {
-      console.log("to get id",DropValRed)
+      console.log("to get id",parentId)
       dispatch(FetchDropValData())
     }
 

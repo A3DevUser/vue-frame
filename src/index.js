@@ -3,18 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './Store';
 import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorLog from './Component/Elements/ErrorLog';
+import { useEffect } from 'react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
+  
   <React.StrictMode>
+    <ErrorBoundary FallbackComponent={ErrorLog}>
     <Provider store={store}>
-      <BrowserRouter>
-    <App />
+    <BrowserRouter>
+    <App/>
     </BrowserRouter>
     </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

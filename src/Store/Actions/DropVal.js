@@ -21,7 +21,7 @@ const DropValErr = (val) =>{
     }
 };
 
-export const FetchDropValData = (FormID,GridId,ColId) =>{
+export const FetchDropValData = (FormId,GridId,ColId) =>{
     return (dispatch)=>{
         dispatch(DropValReq());
         axios.get(`https://jsonplaceholder.typicode.com/users`)

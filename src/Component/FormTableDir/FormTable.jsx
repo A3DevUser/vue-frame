@@ -149,6 +149,7 @@ const FormTable = ({col,dData,gridData}) => {
         <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
         <div style={{flex:'1'}}>
         <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
+        disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
         >Add</button>
                 </div>

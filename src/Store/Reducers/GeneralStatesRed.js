@@ -11,3 +11,10 @@ export const FormDatRed = (state=[],action) =>{
         default : return state
     }
 }
+
+export const EmdRed = (state=null,action) =>{
+    switch(action.type){
+        case 'EmdAct' : return action.payload
+        default : return state
+    }
+}

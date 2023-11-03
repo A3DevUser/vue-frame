@@ -16,11 +16,12 @@ const GridForm = () => {
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const GridRed = useSelector((state)=>state.GridRed)
     const FormDatRed = useSelector((state)=>state.FormDatRed)
+    const EmdRed = useSelector((state)=>state.EmdRed)
 
     useEffect(()=>{
-    dispatch(FetchColumnData(FormIdRed))
+    dispatch(FetchColumnData(FormIdRed,EmdRed))
     dispatch(FetchGridData(FormIdRed))
-    },[FormIdRed])
+    },[FormIdRed,EmdRed])
 
     useEffect(()=>{
     },[ColumnRed])

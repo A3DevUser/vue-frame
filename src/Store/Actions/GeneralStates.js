@@ -5,6 +5,13 @@ export const FormIdAct = (id) =>{
     }
 } 
 
+export const EmdAct = (emd) =>{
+    return {
+        type : 'EmdAct',
+        payload : emd
+    }
+}
+
 export const ResetAct = ()=>{
     return {
         type : 'ResetAct'

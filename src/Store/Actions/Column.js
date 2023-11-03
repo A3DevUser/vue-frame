@@ -21,10 +21,10 @@ const ColumnErr = (val) =>{
     }
 };
 
-export const FetchColumnData = (id) =>{
+export const FetchColumnData = (id,emd) =>{
     return (dispatch)=>{
         dispatch(ColumnReq());
-        axios.get(`http://localhost:8080/VF/getcolumn?formId=${id}`)
+        axios.get(`http://localhost:8080/VF/getcol?formId=${id}&emd=${emd}`)
         .then((res)=>{
             dispatch(ColumnSuccess(res.data))
         })

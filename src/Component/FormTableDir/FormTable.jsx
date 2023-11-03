@@ -16,6 +16,7 @@ const FormTable = ({col,dData,gridData}) => {
     const [finalArr, setfinalArr] =useState([])
   
     const FormDatRed = useSelector((state) => state.FormDatRed)
+    const EmdRed = useSelector((state)=>state.EmdRed)
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
@@ -147,7 +148,7 @@ const FormTable = ({col,dData,gridData}) => {
           <div style={{display:'flex'}}>
         <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
         <div style={{flex:'1'}}>
-        <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
+        <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' && EmdRed =='yes' ? 'block' : 'none',flex:'1' }}
         onClick={handleAddRow}
         >Add</button>
                 </div>

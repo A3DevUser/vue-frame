@@ -4,3 +4,10 @@ float: right;
 z-index: 999;
 margin: 15px;
 }
+
+.ddClassEle{
+    color: white;
+    z-index: 999;
+    margin: 15px;
+    display: inline-block;
+    }

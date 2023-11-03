@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { Button, NavDropdown } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { FetchNavbarData } from '../Store/Actions/NavBar'
-import { FormIdAct, ResetAct } from '../Store/Actions/GeneralStates'
+import { EmdAct, FormIdAct, ResetAct } from '../Store/Actions/GeneralStates'
 import { Modal } from 'react-bootstrap'
 import Dropdown from 'react-dropdown';
 import './Nabar.css'
@@ -23,6 +23,9 @@ const Navbar = () => {
 
     const handleNavigate = (res) =>{
         dispatch(FormIdAct(res.formId))
+        if(res.emd){
+            dispatch(EmdAct(res.emd))
+        }
         navigate(res.navigate)
     }
 
@@ -55,10 +58,17 @@ style={{backgroundColor:'#131D40'}}
             // >{res.navName}</button>
         }
         else{
-            return <button onClick={()=>{handleNavigate(res)}} key={i} 
-            className=' btn btn-sm my-1 mx-2 p-2' 
-            style={{backgroundColor:'#131D40', color:'white'}}
-            >{res.navName}</button>
+            return <NavDropdown className='ddClassEle' title={res.navName}>
+                <NavDropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
+
+            </NavDropdown>
+            
+            // <button onClick={()=>{handleNavigate(res)}} key={i} 
+            // className=' btn btn-sm my-1 mx-2 p-2' 
+            // style={{backgroundColor:'#131D40', color:'white'}}
+            // >{res.navName}</button>
         }
     })
 }

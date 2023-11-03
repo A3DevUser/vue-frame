@@ -57,12 +57,14 @@ const FormConf = () => {
       // gridData.forEach((res)=>{
       //   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
       // })
-      const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
-      const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
-      const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
-      dispatch(FormConfData(secApi,FormData))
-      // console.log('Save Grid',FormDatRed[gridIdVal])
-      console.log('Save Grid',secApi)
+      if(Object.keys(FormDatRed).length > 1){
+        const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
+        const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
+        const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
+        // dispatch(FormConfData(secApi,FormData))
+        console.log('Save Grid',FormData)
+        console.log('Save Grid',secApi)
+      }
     }
 
 

@@ -20,6 +20,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                             dataObj[fe.accessor]=''
                         }
                         })
+                        console.log(dataObj)
                     return (<>
                     <div style={{maxWidth : subRes.width}}>
                         {

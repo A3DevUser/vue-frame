@@ -27,7 +27,7 @@ const GridForm = () => {
     },[ColumnRed])
 
     useEffect(()=>{
-      console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
+      console.log('FormDatRed',JSON.stringify(Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})))
       },[FormDatRed])
 
       const handleSave = () =>{

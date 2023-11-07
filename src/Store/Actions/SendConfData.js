@@ -1,3 +1,4 @@
+import { MainObject } from "../../Component/Elements/commonFun"
 import axios from "axios"
 
 export const ConfReq = (getConfData)=>{
@@ -29,9 +30,11 @@ export const FormConfData = (api,FormConfInfo)=>{
         .then((res)=>{
             // const FormDtls = res.data.map((Dtls=>Dtls))
             dispatch(ConfSuccess(res.data))
+           return MainObject.alert('Data Save Successfully')
         })
         .catch((err)=>{
             dispatch(ConfError(err))
+          return MainObject.alert(`Error Occurred: ${err}`)
         })
     }
 }

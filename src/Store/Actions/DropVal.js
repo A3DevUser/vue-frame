@@ -24,7 +24,7 @@ const DropValErr = (val) =>{
 export const FetchDropValData = (FormId,GridId,ColId) =>{
     return (dispatch)=>{
         dispatch(DropValReq());
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
+        axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}`)
         .then((res)=>{
             dispatch(DropValSuccess(res.data))
         })

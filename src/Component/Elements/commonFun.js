@@ -79,6 +79,9 @@ export const MainObject = {
             <Spinner variant="primary"/>
             </div>
     },
+    dropLoader : () => {
+        return <Spinner variant="primary"/>
+    },
     modalpop : (title,bodyDetails,show,showFunc) =>{return <ModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
     SimpleModal : (title,bodyDetails,show,showFunc) =>{return <SimpleModalCompo title={title} bodyDetails={bodyDetails} show={show} showFunc={showFunc}/>},
     

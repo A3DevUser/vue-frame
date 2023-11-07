@@ -8,7 +8,6 @@ import { FetchConfSectionData } from '../Store/Actions/ConfSection'
 import { FormConfData } from '../Store/Actions/SendConfData';
 import { useNavigate } from 'react-router';
 
-
 const FormConf = () => {
 
     const dispatch = useDispatch();
@@ -57,14 +56,14 @@ const FormConf = () => {
       // gridData.forEach((res)=>{
       //   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
       // })
-      console.log('Save Grid',FormDatRed)
+      // console.log('Save Grid',FormDatRed)
         const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
         const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
         if(Object.keys(FormDatRed).includes(gridIdVal)){
           const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
-          // dispatch(FormConfData(secApi,FormData))
-          console.log('Save Grid',FormData)
-          console.log('Save Grid',secApi)
+          dispatch(FormConfData(secApi,FormData))
+          // console.log('Save Grid',FormData)
+          // console.log('Save Grid',secApi)
         }
     }
 

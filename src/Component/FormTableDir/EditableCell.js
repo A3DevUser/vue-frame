@@ -7,6 +7,7 @@ import ModalForm from "../ModalForm"
 import { useDispatch, useSelector } from "react-redux"
 import { FormDataAct } from "../../Store/Actions/GeneralStates"
 import { FetchDropValData } from "../../Store/Actions/DropVal"
+import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -16,11 +17,21 @@ export const EditableCell = ({
     rowObj : rowObj,
     parentId
   }) => {
+    const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
+
     const [value, setValue] = React.useState(initialValue)
     const onChange = e => {
       setValue(e.target.value)
     }
   
+    console.log('colId',id)
+    useEffect(()=>{
+      if(id=='formId'){
+        // setValue(SendConfDataRed.val.formId)
+        updateMyData(index, id, SendConfDataRed.val.formId,null)
+
+      }
+    },[SendConfDataRed])
     const onBlur = () => {
       updateMyData(index, id, value,null)
     }
@@ -49,6 +60,7 @@ export const EditableCell = ({
 
   }) => {
     const [value, setValue] = React.useState(initialValue)
+    const [newRow,setnewRow]=useState()
     
     const onChange = e => {
       setValue(e.target.value)
@@ -71,18 +83,26 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
     function handleOnfocus() {
-      // console.log("to get id",parentId)
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal))
+      // console.log("outPutVal",rowObj.original.formId)
+      setnewRow(rowObj.original)
     }
 
     useEffect(()=>{
-                  if(Object.keys(DropValRed.val).length >= 1){
-                    const inputFapi =  JSON.parse(DropValRed.val.colId)
-                    console.log("DropVal", ColumnRed.val.filter((res)=>{
-                      return inputFapi.includes(res.columnId)
-                    }))
-                  }
-                  },[DropValRed])
+      if(!DropValRed.loading){
+        // let dropDVal = {}
+        // if(Object.keys(DropValRed.val).length >= 1){
+        //   const inputFapi =  JSON.parse(DropValRed.val.colId)
+        //   console.log("DropVal", ColumnRed.val.filter((res)=>{
+        //     return (inputFapi.includes(res.columnId))
+        //   }).forEach((res)=>{
+        //     return ( dropDVal[res.accessor] = newRow[res.accessor])
+        // }))
+        // }
+      console.log("dropDVal",newRow)
+      // dispatch(FetchDropValSecData(dropDVal))
+      }
+    },[DropValRed])
   
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>

@@ -13,6 +13,7 @@ import { ModalGridRed } from "./ModalGridRed";
 import { ModalColumnRed } from "./ModalColumnRed";
 import { SendConfDataRed } from "./SendConfDataRed";
 import { DropValRed } from "./DropValRed";
+import { DropValSecRed } from "./DropValSecRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -30,7 +31,8 @@ const rootReducers = combineReducers({
     ModalColumnRed,
     SendConfDataRed,
     DropValRed,
-    EmdRed
+    EmdRed,
+    DropValSecRed
     });
 
 export default rootReducers

@@ -12,7 +12,7 @@ export const ColumnRed = (state = initialState, action) =>{
             loading : false,
             val : action.payload,
             err : ''
-        }
+        } 
 
         case 'ColumnErr' : return {
             loading : true,

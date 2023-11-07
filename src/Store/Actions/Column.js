@@ -10,7 +10,7 @@ const ColumnReq = (val) =>{
 const ColumnSuccess = (val) =>{
     return {
         type : 'ColumnSuccess',
-        payload : val
+        payload : val 
     }
 };
 

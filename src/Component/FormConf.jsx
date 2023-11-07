@@ -62,7 +62,7 @@ const FormConf = () => {
         const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
         if(Object.keys(FormDatRed).includes(gridIdVal)){
           const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
-          // dispatch(FormConfData(secApi,FormData))
+          dispatch(FormConfData(secApi,FormData))
           console.log('Save Grid',FormData)
           console.log('Save Grid',secApi)
         }

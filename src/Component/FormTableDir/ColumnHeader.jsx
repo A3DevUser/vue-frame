@@ -3,7 +3,7 @@ import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAtt
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data) =>{
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
-    //console.log("to get id",res)
+    console.log("cell Values",res)
     if(res.cellType==='textArea'){
       return {
         Header : res.fieldName,
@@ -23,8 +23,6 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
         Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal}} />},
         width : res.width,
         sticky : res.sticky
-
-
       }
     }else if(res.cellType==='date'){
       return {

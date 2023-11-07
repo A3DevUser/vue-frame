@@ -49,7 +49,7 @@ export const EditableCell = ({
 
   }) => {
     const [value, setValue] = React.useState(initialValue)
-
+    
     const onChange = e => {
       setValue(e.target.value)
     }
@@ -68,22 +68,29 @@ export const EditableCell = ({
     // }
     const dispatch = useDispatch()
     const DropValRed = useSelector((state) => state.DropValRed)
+    const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
     function handleOnfocus() {
       // console.log("to get id",parentId)
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal))
     }
 
-
-    useEffect(()=>{console.log("New Api Val",DropValRed)},[DropValRed])
+    useEffect(()=>{
+                  if(Object.keys(DropValRed.val).length >= 1){
+                    const inputFapi =  JSON.parse(DropValRed.val.colId)
+                    console.log("DropVal", ColumnRed.val.filter((res)=>{
+                      return inputFapi.includes(res.columnId)
+                    }))
+                  }
+                  },[DropValRed])
   
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? <option>Loading...</option> : DropValRed.val.map((res,i)=>{
-            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
-        })
-
+       DropValRed.loading ? <option>Loading...</option> : <option>Loading...</option>
+      //  DropValRed.val.map((res,i)=>{
+      //       return <option key={i} value={res.storedValue}>{res.displayValue}</option>
+      // })
       }
            </select>
   }

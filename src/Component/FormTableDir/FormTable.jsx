@@ -134,7 +134,6 @@ const FormTable = ({col,dData,gridData}) => {
           const handleAddRow = ()=>{
             let obj ={}
             columns.forEach((res)=> obj[res.accessor]='')
-            console.log("RowData",obj)
             addAndDeleteRow('',obj,'add')
           }
   

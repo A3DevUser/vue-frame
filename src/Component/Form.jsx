@@ -7,6 +7,7 @@ import { FetchColumnData } from '../Store/Actions/Column';
 import { FetchSubSectionData } from '../Store/Actions/SubSection';
 import { ResetAct } from '../Store/Actions/GeneralStates';
 import { FetchGridData } from '../Store/Actions/GridAct';
+import LoadingBar from 'react-top-loading-bar';
 
 const Form = () => {
 
@@ -60,7 +61,7 @@ const Form = () => {
   return (
 <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%'}} className='bg-light'>
-{
+  {
   SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() :  MainObject.SectionNav(SectionRed.val,GridRed.val,setdefaultVal)
   }
   </div>
@@ -74,6 +75,7 @@ const Form = () => {
   </div>
     </div>
   )
+
 }
 
 export default Form

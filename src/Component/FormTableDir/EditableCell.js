@@ -80,8 +80,8 @@ export const EditableCell = ({
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? MainObject.loader() : DropValRed.val.map((res,i)=>{
-            return <option key={i} value={res.id}>{res.name}</option>
+       DropValRed.loading ? <option>Loading...</option> : DropValRed.val.map((res,i)=>{
+            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
         })
 
       }

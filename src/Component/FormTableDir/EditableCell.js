@@ -85,7 +85,7 @@ export const EditableCell = ({
 
     function handleOnfocus() {
       let rowData = encodeURI(JSON.stringify(parentId.json.original))
-      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,a))
+      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,rowData))
       //setnewRow(rowObj.original)
       setnewRow(parentId.json.original)
       console.log("FullVall",parentId)

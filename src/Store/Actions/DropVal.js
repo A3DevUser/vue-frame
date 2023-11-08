@@ -21,10 +21,11 @@ const DropValErr = (val) =>{
     }
 };
 
-export const FetchDropValData = (FormId,GridId,ColId) =>{
+export const FetchDropValData = (FormId,GridId,ColId,JSON) =>{
+    console.log("JSONval",JSON)
     return (dispatch)=>{
         dispatch(DropValReq());
-        axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}`)
+        axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}&jsonDrop=${JSON}`)
         .then((res)=>{
             dispatch(DropValSuccess(res.data))
         })

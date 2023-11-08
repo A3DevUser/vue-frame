@@ -80,37 +80,28 @@ export const EditableCell = ({
     // }
     const dispatch = useDispatch()
     const DropValRed = useSelector((state) => state.DropValRed)
+    const DropValSecRed = useSelector((state)=> state.DropValSecRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
     function handleOnfocus() {
-      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal))
-      // console.log("outPutVal",rowObj.original.formId)
-      setnewRow(rowObj.original)
-    }
+      let a = encodeURI(JSON.stringify(parentId.json.original))
+      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,a))
+      //setnewRow(rowObj.original)
+      setnewRow(parentId.json.original)
+      console.log("FullVall",parentId)
+     }
 
     useEffect(()=>{
-      if(!DropValRed.loading){
-        // let dropDVal = {}
-        // if(Object.keys(DropValRed.val).length >= 1){
-        //   const inputFapi =  JSON.parse(DropValRed.val.colId)
-        //   console.log("DropVal", ColumnRed.val.filter((res)=>{
-        //     return (inputFapi.includes(res.columnId))
-        //   }).forEach((res)=>{
-        //     return ( dropDVal[res.accessor] = newRow[res.accessor])
-        // }))
-        // }
-      console.log("dropDVal",newRow)
-      // dispatch(FetchDropValSecData(dropDVal))
-      }
+      console.log("DropValRedFin",DropValRed)
     },[DropValRed])
   
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? <option>Loading...</option> : <option>Loading...</option>
-      //  DropValRed.val.map((res,i)=>{
-      //       return <option key={i} value={res.storedValue}>{res.displayValue}</option>
-      // })
+       DropValRed.loading ? <option>Loading...</option> : 
+       DropValRed.val.map((res,i)=>{
+            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
+      })
       }
            </select>
   }

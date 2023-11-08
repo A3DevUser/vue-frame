@@ -3,7 +3,7 @@ import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAtt
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data) =>{
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
-    console.log("cell Values",res)
+    // console.log("cell Values",res)
     if(res.cellType==='textArea'){
       return {
         Header : res.fieldName,
@@ -16,11 +16,12 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
       let formIdVal = res.formId
       let gridIdVal = res.gridId
       let colIdVal = res.columnId
-      // console.log("to get id",res.formId)
+      // let json = rowObj.original
+      // console.log("to get id",cell)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal}} />},
+        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal, json: cell.row}} />},
         width : res.width,
         sticky : res.sticky
       }

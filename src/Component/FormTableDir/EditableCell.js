@@ -84,8 +84,8 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
     function handleOnfocus() {
-      let jsonVal = encodeURI(JSON.stringify(parentId.json.original))
-      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,jsonVal))
+      let a = encodeURI(JSON.stringify(parentId.json.original))
+      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,a))
       //setnewRow(rowObj.original)
       setnewRow(parentId.json.original)
       console.log("FullVall",parentId)
@@ -98,7 +98,7 @@ export const EditableCell = ({
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? <option>Loading...</option> : 
+       DropValRed.loading ? <option value="">Loading...</option> : 
        DropValRed.val.map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })

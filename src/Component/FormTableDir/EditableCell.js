@@ -84,7 +84,7 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
     function handleOnfocus() {
-      let a = encodeURI(JSON.stringify(parentId.json.original))
+      let rowData = encodeURI(JSON.stringify(parentId.json.original))
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,a))
       //setnewRow(rowObj.original)
       setnewRow(parentId.json.original)

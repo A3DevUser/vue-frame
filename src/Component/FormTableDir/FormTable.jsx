@@ -97,11 +97,13 @@ const FormTable = ({col,dData,gridData}) => {
   
   
         useEffect(()=>{
-          if(window.location.pathname !=='/confform'){
+          if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,gridId:gridData.gridId, formId :FormIdRed }})}) )  
           }
+
+
        //   if(data.length > 0){
         //   setfinalArr((old)=>{
         //     if(old.some((sres)=>{return sres.id == data[chngRow].id})){

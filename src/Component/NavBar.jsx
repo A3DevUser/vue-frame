@@ -36,8 +36,8 @@ const Navbar = () => {
 return (
 <>
 <nav 
-style={{backgroundColor:'#131D40'}}
-// className='bg-primary'
+// style={{backgroundColor:'#131D40'}}
+className='bg-primary'
 >
 <img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px'}} onClick={funProfile}/>
 {MainObject.SimpleModal('User Info','this is body',show,funProfile)}

@@ -77,7 +77,7 @@ export const Styles = styled.div`
       padding: 5px;
       border-bottom: 1px solid #ddd;
       border-right: 1px solid #ddd;
-      background-color: #adb5bd;
+      background-color: #0d6efdb0;
       color: black;
       
       text-align: center;

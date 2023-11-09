@@ -95,7 +95,7 @@ export const EditableCell = ({
       console.log("DropValRedFin",DropValRed)
     },[DropValRed])
   
-    return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+    return <select name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
        DropValRed.loading ? <option value="">Loading...</option> : 

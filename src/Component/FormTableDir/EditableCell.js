@@ -67,7 +67,7 @@ export const EditableCell = ({
     }
   
     const onBlur = () => {
-      updateMyData(index, id, value,null,'')
+        updateMyData(index, id, value,null,'')
     }
   
     React.useEffect(() => {
@@ -86,8 +86,6 @@ export const EditableCell = ({
     function handleOnfocus() {
       let rowData = encodeURI(JSON.stringify(parentId.json.original))
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,rowData))
-      //setnewRow(rowObj.original)
-      setnewRow(parentId.json.original)
       console.log("FullVall",parentId)
      }
 
@@ -98,7 +96,7 @@ export const EditableCell = ({
     return <select value={value} onClick={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? <option value="">Loading...</option> : 
+       DropValRed.loading ? <option value="">Drop Down</option> : 
        DropValRed.val.map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FormDataAct } from '../../Store/Actions/GeneralStates'
 import { EditableActionCell } from './EditableCell'
 import VertTableStruc from './VertTableStruc'
+import { FetchDropValData } from '../../Store/Actions/DropVal'
 
 const FormTable = ({col,dData,gridData}) => {
     const [data,setdata]=useState([...dData])
@@ -18,6 +19,8 @@ const FormTable = ({col,dData,gridData}) => {
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const EmdRed = useSelector((state)=>state.EmdRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
+    const DropValRed = useSelector((state) => state.DropValRed)
+
 
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
@@ -67,16 +70,20 @@ const FormTable = ({col,dData,gridData}) => {
           })
       }
     }
+    const handleOnfocus = (fid,gid,cid,rData,oData) =>{
+      let rowData = encodeURI(JSON.stringify(rData))
+      dispatch(FetchDropValData(fid,gid,cid,rowData,oData))
+    }
       const[columns,setcolumns]=useState(
         gridData.isMrow =='true' ?
-          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data),
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val),
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
       }]
        :
-       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data)
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
     
     )
       // console.log(ColumnHeader(col,updateMyData))
@@ -84,17 +91,20 @@ const FormTable = ({col,dData,gridData}) => {
       useEffect(()=>{
         setcolumns(
           gridData.isMrow =='true' ?
-          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data),
+          [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val),
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
         Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length}/>},
       }]
        :
-       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data)
+       ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
       )
       },[col])
   
+      // useEffect(()=>{
+      //   console.log('dropDownData',DropValRed.val)
+      // },[DropValRed])
   
         useEffect(()=>{
           if(window.location.pathname == '/confform'){
@@ -142,6 +152,8 @@ const FormTable = ({col,dData,gridData}) => {
             columns.forEach((res)=> obj[res.accessor]='')
             addAndDeleteRow('',obj,'add')
           }
+
+
   
       const tableInstance = useTable({
           columns,

@@ -60,10 +60,16 @@ export const EditableCell = ({
 
   }) => {
     const [value, setValue] = React.useState(initialValue)
-    const [newRow,setnewRow]=useState()
+    const [disText, setdisText] = React.useState(initialValue)
+
+    const [dropVal,setdropVal]=useState([])
+    const [disState, setdisState] = useState('block')
     
     const onChange = e => {
+      // console.log('DropValRedFin',e.target.text)
       setValue(e.target.value)
+      setdisText(e.target.text)
+      setdisState('none')
     }
   
     const onBlur = () => {
@@ -72,6 +78,7 @@ export const EditableCell = ({
   
     React.useEffect(() => {
       setValue(initialValue)
+      setdisText(initialValue)
     }, [initialValue])
 
     // let opt = []
@@ -87,23 +94,37 @@ export const EditableCell = ({
       let rowData = encodeURI(JSON.stringify(parentId.json.original))
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,rowData))
       //setnewRow(rowObj.original)
-      setnewRow(parentId.json.original)
-      console.log("FullVall",parentId)
+      // setnewRow(parentId.json.original)
+      // console.log("FullVall",parentId)
+  // setdisState()
      }
 
     useEffect(()=>{
-      console.log("DropValRedFin",DropValRed)
+      // console.log("DropValRedFin",parentId.colIdVal)
+      setdropVal(DropValRed.val)
+
     },[DropValRed])
+
+    useEffect(()=>{
+      console.log("DropValRedFin",disText)
+
+    },[disText])
   
-    return <select name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+    return <div>
+     <p className="my-2 mx-2" style={{display:disState == 'block' ? 'none' : 'block', fontSize:'20px'}} onClick={()=>{
+      setdisState(disState == 'block' ? 'none' : 'block')
+     }}>{disText}</p> 
+    <select  key={id} name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', display : disState }} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
        DropValRed.loading ? <option value="">Loading...</option> : 
-       DropValRed.val.map((res,i)=>{
+       dropVal.map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
       }
            </select>
+           
+           </div>
   }
 
   export const EditableNumCell = ({

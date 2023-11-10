@@ -50,6 +50,15 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
+      console.log('subRes',val)
+
+        if(Object.keys(FormDatRed).includes(val.gridId)){
+          const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
+          // dispatch(FormConfData(val.api,FormData))
+        }
+
+
+
       // const gridId=GridRed.val.filter((fil)=>{return fil.secId==val})[0].gridId
       // console.log('handleSave',JSON.stringify(FormDatRed[gridId]))
       // const gridData = GridRed.val.map((res)=>{return {gridId : res.gridId, api : res.api}})
@@ -57,14 +66,14 @@ const FormConf = () => {
       //   dispatch(FormConfData(res.api,FormDatRed[res.gridId]))
       // })
       // console.log('Save Grid',FormDatRed)
-        const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
-        const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
-        if(Object.keys(FormDatRed).includes(gridIdVal)){
-          const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
-          dispatch(FormConfData(secApi,FormData))
-          // console.log('Save Grid',FormData)
-          // console.log('Save Grid',secApi)
-        }
+        // const gridIdVal = GridRed.val.filter((grifil)=>{return grifil.secId == val})[0].gridId
+        // const secApi = SectionRed.val.filter((secfil)=>{return secfil.secId == val})[0].api
+        // if(Object.keys(FormDatRed).includes(gridIdVal)){
+        //   const FormData = FormDatRed[gridIdVal].map((res) => {return {...res, ...SendConfDataRed.val}})
+        //   dispatch(FormConfData(secApi,FormData))
+        //   // console.log('Save Grid',FormData)
+        //   // console.log('Save Grid',secApi)
+        // }
     }
 
 

@@ -29,7 +29,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
   {
-    MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Save'},()=>{handleSave(subRes.secId)},i)
+    MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Save'},()=>{handleSave(subRes)},i)
   }
   </span>
                     </div></>)

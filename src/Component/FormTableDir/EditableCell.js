@@ -86,7 +86,7 @@ export const EditableCell = ({
     return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
-       DropValRed.loading ? <option value="">Loading...</option> : 
+       DropValRed.loading ? <option value="">Drop Down</option> : 
        DropValRed.val.filter((fil)=>{return fil.ColId == parentId.colIdVal}).map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })

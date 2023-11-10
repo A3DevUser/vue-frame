@@ -108,6 +108,6 @@ export const MainObject = {
     },
 
     tabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal,handleSave) =>{
-        return <TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} />
+        return <><TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} /></>
     }
 } 

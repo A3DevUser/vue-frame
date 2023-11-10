@@ -32,7 +32,8 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
     MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Save'},()=>{handleSave(subRes.secId)},i)
   }
   </span>
-                    </div></>)
+  <br/><br/><br/><br/>
+  </div></>)
                 })
             }
                 </Tab>

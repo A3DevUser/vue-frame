@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DropDownVal } from "./GeneralStates";
 
 const DropValReq = (val) =>{
     return {
@@ -21,13 +22,15 @@ const DropValErr = (val) =>{
     }
 };
 
+let dataObj = {}
 export const FetchDropValData = (FormId,GridId,ColId,JSON) =>{
-    console.log("JSONval",JSON)
     return (dispatch)=>{
         dispatch(DropValReq());
         axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}&jsonDrop=${JSON}`)
         .then((res)=>{
             dispatch(DropValSuccess(res.data))
+            dataObj = {...dataObj,[ColId] : res.data}
+            dispatch(DropDownVal(dataObj))
         })
         .catch((err)=>{
             dispatch(DropValErr(err))

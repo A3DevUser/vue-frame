@@ -14,6 +14,7 @@ const FormTable = ({col,dData,gridData}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
+    
   
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const EmdRed = useSelector((state)=>state.EmdRed)

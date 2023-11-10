@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
 
-export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data) =>{
+export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data,setdataObj,dataObj) =>{
+
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
     // console.log("cell Values",res)
@@ -21,7 +23,7 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal, json: cell.row}} />},
+        Cell: ({cell})=>{return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal, json: cell.row}} setdataObj={setdataObj} dataObj={dataObj} />},
         width : res.width,
         sticky : res.sticky
       }

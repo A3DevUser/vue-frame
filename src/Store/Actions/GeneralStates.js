@@ -24,3 +24,10 @@ export const FormDataAct = (val) =>{
         payload : val
     }
 }
+
+export const DropDownVal = (val) =>{
+    return {
+        type :'DropDownVal',
+        payload : val
+    }
+}

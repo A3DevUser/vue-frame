@@ -18,3 +18,10 @@ export const EmdRed = (state=null,action) =>{
         default : return state
     }
 }
+
+export const DropDownValRed = (state=null,action) =>{
+    switch(action.type){
+        case 'DropDownVal' : return action.payload
+        default : return state
+    }
+}

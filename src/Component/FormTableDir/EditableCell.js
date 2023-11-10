@@ -5,7 +5,7 @@ import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
 import ModalForm from "../ModalForm"
 import { useDispatch, useSelector } from "react-redux"
-import { FormDataAct } from "../../Store/Actions/GeneralStates"
+import { DropDownVal, FormDataAct } from "../../Store/Actions/GeneralStates"
 import { FetchDropValData } from "../../Store/Actions/DropVal"
 import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
 export const EditableCell = ({
@@ -48,6 +48,8 @@ export const EditableCell = ({
     </div>
   }
 
+  // let dataObj ={}
+
   export const EditableDdCell = ({
     value: initialValue,
     row:  index ,
@@ -56,11 +58,11 @@ export const EditableCell = ({
     dropDown : dropDown ,
     colObj:colObj,
     rowObj : rowObj,
-    parentId 
-
+    parentId ,
   }) => {
     const [value, setValue] = React.useState(initialValue)
-    const [newRow,setnewRow]=useState()
+    const [loading,setloading]=useState(true)
+    const [colId,setcolId]=useState('')
     
     const onChange = e => {
       setValue(e.target.value)
@@ -80,27 +82,44 @@ export const EditableCell = ({
     // }
     const dispatch = useDispatch()
     const DropValRed = useSelector((state) => state.DropValRed)
-    const DropValSecRed = useSelector((state)=> state.DropValSecRed)
+    const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
+    
+
     function handleOnfocus() {
+      // console.log('DropValRedFin',parentId.colIdVal)
+      // setcolId(parentId.colIdVal)
       let rowData = encodeURI(JSON.stringify(parentId.json.original))
       dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,rowData))
-      console.log("FullVall",parentId)
-     }
+    }
+
+    function handelOnClick(){
+      setcolId(parentId.colIdVal)
+    }
+    
+    useEffect(()=>{
+      // setdataObj({...dataObj})
+      },[DropValRed])
+    
+    useEffect(()=>{
+      // console.log('DropValRedFin',colId)
+    },[colId])
 
     useEffect(()=>{
-      console.log("DropValRedFin",DropValRed)
-    },[DropValRed])
-  
-    return <select name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+        // console.log('DropValRedFin', parentId.gridIdVal)
+    },[DropDownValRed])
+
+    console.log('DropValRedFin',colId)
+    return <select name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} onClick={handelOnClick} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
-      {
+      {/* {
        DropValRed.loading ? <option value="">Drop Down</option> : 
-       DropValRed.val.map((res,i)=>{
+       colId.length < 1 ?  <option value="">Drop Down</option> :
+       DropDownValRed[colId].map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
-      }
+      } */}
            </select>
   }
 

@@ -58,11 +58,11 @@ export const EditableCell = ({
     dropDown : dropDown ,
     colObj:colObj,
     rowObj : rowObj,
-    parentId ,
+    parentId,
+    handleOnfocus,
+    dropDownData : dropDownData
   }) => {
     const [value, setValue] = React.useState(initialValue)
-    const [loading,setloading]=useState(true)
-    const [colId,setcolId]=useState('')
     
     const onChange = e => {
       setValue(e.target.value)
@@ -76,50 +76,21 @@ export const EditableCell = ({
       setValue(initialValue)
     }, [initialValue])
 
-    // let opt = []
-    // if(dropDown){
-    //   opt = dropDown.filter((fil,i)=>{return i==index})[0].dropDown.split(',')
-    // }
     const dispatch = useDispatch()
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
-    
+  console.log('dropDownec',DropValRed.val)
 
-    function handleOnfocus() {
-      // console.log('DropValRedFin',parentId.colIdVal)
-      // setcolId(parentId.colIdVal)
-      let rowData = encodeURI(JSON.stringify(parentId.json.original))
-      dispatch(FetchDropValData(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,rowData))
-    }
-
-    function handelOnClick(){
-      setcolId(parentId.colIdVal)
-    }
-    
-    useEffect(()=>{
-      // setdataObj({...dataObj})
-      },[DropValRed])
-    
-    useEffect(()=>{
-      // console.log('DropValRedFin',colId)
-    },[colId])
-
-    useEffect(()=>{
-        // console.log('DropValRedFin', parentId.gridIdVal)
-    },[DropDownValRed])
-
-    console.log('DropValRedFin',colId)
-    return <select name={id} value={value} onFocus={handleOnfocus} onChange={onChange} onBlur={onBlur} onClick={handelOnClick} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+    return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
-      {/* {
-       DropValRed.loading ? <option value="">Drop Down</option> : 
-       colId.length < 1 ?  <option value="">Drop Down</option> :
-       DropDownValRed[colId].map((res,i)=>{
+      {
+       DropValRed.loading ? <option value="">Loading...</option> : 
+       DropValRed.val.filter((fil)=>{return fil.ColId == parentId.colIdVal}).map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
-      } */}
+      }
            </select>
   }
 

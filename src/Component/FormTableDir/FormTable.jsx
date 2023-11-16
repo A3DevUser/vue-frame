@@ -71,10 +71,12 @@ const FormTable = ({col,dData,gridData}) => {
           })
       }
     }
-    const handleOnfocus = (fid,gid,cid,rData,oData) =>{
+    const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
+      // console.log('dropvaldata',encodeURI(JSON.stringify(rData)))
       let rowData = encodeURI(JSON.stringify(rData))
-      dispatch(FetchDropValData(fid,gid,cid,rowData,oData))
+      dispatch(FetchDropValData(fid,gid,cid,rowData,oData,rowInd))
     }
+
       const[columns,setcolumns]=useState(
         gridData.isMrow =='true' ?
           [...ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val),
@@ -113,7 +115,6 @@ const FormTable = ({col,dData,gridData}) => {
           }else{
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,gridId:gridData.gridId, formId :FormIdRed }})}) )  
           }
-
 
        //   if(data.length > 0){
         //   setfinalArr((old)=>{

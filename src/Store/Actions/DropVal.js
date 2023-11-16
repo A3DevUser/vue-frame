@@ -22,24 +22,23 @@ const DropValErr = (val) =>{
     }
 };
 
-export const FetchDropValData = (FormId,GridId,ColId,JSON,oldData) =>{
+let newObj = {};
+export const FetchDropValData = (FormId,GridId,ColId,JSON,oldData,rowInd) =>{
+
     return (dispatch)=>{
         dispatch(DropValReq());
         axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}&jsonDrop=${JSON}`)
         .then((res)=>{
-            // console.log("JSONval",[...oldData,...res.data])
+            // console.log("JSONval",rowInd)
+            newObj[ColId+rowInd] = res.data.map((mres)=>{return {...mres,ColId : ColId,rowInd:rowInd}})
+            console.log("JSONval",newObj)
+            let firstSpread = Object.values(newObj)
 
-            dispatch(DropValSuccess(
-                
-                [...oldData,...res.data.map((mres)=>{return {...mres,ColId : ColId}})]
-                .filter(
-                    (obj, index, self) =>
-                      index ===
-                      self.findIndex(
-                        (o) => o.ColId === obj.ColId && o.storedValue === obj.storedValue
-                      )
-                  )
-                ))
+            console.log('newObj',firstSpread.flat())
+
+            const dropValdd = firstSpread.flat()
+
+            dispatch(DropValSuccess(dropValdd))
         })
         .catch((err)=>{
             dispatch(DropValErr(err))

@@ -41,6 +41,7 @@ const FormConf = () => {
     useEffect(()=>{
       console.log(SectionRed)
       console.log('GridRed',GridRed)
+      console.log('ColumnHead',ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)))
     },[GridRed])
 
     useEffect(()=>{
@@ -54,7 +55,7 @@ const FormConf = () => {
 
         if(Object.keys(FormDatRed).includes(val.gridId)){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
-          // dispatch(FormConfData(val.api,FormData))
+          dispatch(FormConfData(val.api,FormData))
         }
 
 
@@ -91,7 +92,7 @@ const FormConf = () => {
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
-      defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val,[],defaultVal,setdefaultVal,handleSave)
+      defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),[],defaultVal,setdefaultVal,handleSave)
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
   {/* <span className='mx-5 my-2' style={{float:'right'}}>

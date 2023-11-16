@@ -63,31 +63,39 @@ export const EditableCell = ({
     dropDownData : dropDownData
   }) => {
     const [value, setValue] = React.useState(initialValue)
+    const [dataValdd,setdataValdd] = useState()
     
     const onChange = e => {
       setValue(e.target.value)
+      // setdataValdd(DropValRed.val)
     }
   
     const onBlur = () => {
         updateMyData(index, id, value,null,'')
+        console.log('dropDownec',DropValRed.val)
     }
   
+    // const updatedArray = Object.values(dataValdd.reduce((acc, curr) => {
+    //   acc[curr.formId] = curr;
+    //   return acc;
+    //   }, {}));
+
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
+
+    // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
 
     const dispatch = useDispatch()
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
-  console.log('dropDownec',DropValRed.val)
-
-    return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+  return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
       <option>Select One</option>
       {
        DropValRed.loading ? <option value="">Drop Down</option> : 
-       DropValRed.val.filter((fil)=>{return fil.ColId == parentId.colIdVal}).map((res,i)=>{
+       DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
       }
@@ -110,7 +118,7 @@ export const EditableCell = ({
     }
   
     const onBlur = () => {
-      updateMyData(index, id, value,null,parentId.column.parent.id)
+      updateMyData(index, id, value,null,'')
     }
   
     React.useEffect(() => {

@@ -30,10 +30,10 @@ const Form = () => {
         dispatch(FetchColumnData(window.location.pathname === '/GridForm' ? 'FORM-101' : FormIdRed))
     },[FormIdRed])
 
-      console.log('location',window.location.pathname)
+      // console.log('location',window.location.pathname)
     // let obj = {};
     // SubSectionRed.val.forEach((res)=>{return obj[res.subSecId]=''})  
-    console.log('newObj',obj)
+    // console.log('newObj',obj)
     useEffect(()=>{
         if((FormDatRed[FormDatRed.length-1] != undefined)&&(FormDatRed != null)){
           if(FormDatRed[FormDatRed.length-1][0] != undefined){
@@ -49,12 +49,12 @@ const Form = () => {
         }
       },[FormDatRed])
 
-      console.log('finalObj',Object.values(obj))
+      // console.log('finalObj',Object.values(obj))
 
-    useEffect(()=>{
-      console.log(SectionRed)
-      console.log('GridRed',GridRed)
-    },[GridRed])
+    // useEffect(()=>{
+    //   console.log(SectionRed)
+    //   console.log('GridRed',GridRed)
+    // },[GridRed])
 
     const width = '75vw'
 

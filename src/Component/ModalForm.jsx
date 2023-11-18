@@ -52,7 +52,7 @@ const ModalForm = () => {
     // console.log(
     //   'finalObj',FormDatRed.length
     // )
-    console.log('finalObj', FormDatRed)
+    // console.log('finalObj', FormDatRed)
     if (FormDatRed.length > 2) {
       const data = FormDatRed[FormDatRed.length - 1]
       const colList = Object.keys(FormDatRed[FormDatRed.length - 1][0]);
@@ -67,8 +67,8 @@ const ModalForm = () => {
     }
 
   }, [FormDatRed])
-  console.log('finalObj', [[FormDatRed[0]], ...Object.values(obj)])
-  console.log('finalObj', JSON.stringify(Object.values(obj)))
+  // console.log('finalObj', [[FormDatRed[0]], ...Object.values(obj)])
+  // console.log('finalObj', JSON.stringify(Object.values(obj)))
 
   return (
     <div>

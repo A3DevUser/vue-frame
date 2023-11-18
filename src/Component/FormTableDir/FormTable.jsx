@@ -110,10 +110,11 @@ const FormTable = ({col,dData,gridData}) => {
       // },[DropValRed])
   
         useEffect(()=>{
+          console.log('TableData',FormDatRed)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
-            dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,gridId:gridData.gridId, formId :FormIdRed }})}) )  
+            dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}) )  
           }
 
        //   if(data.length > 0){
@@ -141,13 +142,13 @@ const FormTable = ({col,dData,gridData}) => {
             }),
             []
           );
-          useEffect(()=>{
-            console.log('tableColumns',columns)
-          },[columns])
+          // useEffect(()=>{
+          //   console.log('tableColumns',columns)
+          // },[columns])
   
-          useEffect(()=>{
-            console.log(finalArr)
-          },[finalArr])
+          // useEffect(()=>{
+          //   console.log(finalArr)
+          // },[finalArr])
         
           const handleAddRow = ()=>{
             let obj ={}
@@ -170,10 +171,10 @@ const FormTable = ({col,dData,gridData}) => {
           <div style={{display:'flex'}}>
         <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
         <div style={{flex:'1'}}>
-        <button className='btn btn-primary mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
+        <button className='btn btn-success mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
-        >Add</button>
+        ><i class="bi bi-plus-lg"></i> Add</button>
                 </div>
           </div>
         <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} />

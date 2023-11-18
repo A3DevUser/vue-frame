@@ -22,8 +22,10 @@ const FormConf = () => {
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});
+    const [showAlert, setShowAlert] = useState(false);
+
     function funSave() {
-      console.log('finalObj',Object.values(obj))
+      // console.log('finalObj',Object.values(obj))
     }
 
     useEffect(()=>{
@@ -32,26 +34,26 @@ const FormConf = () => {
         dispatch(FetchConfColumnData(FormIdRed))
     },[FormIdRed])
 
-    useEffect(()=>{
-      console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
-      },[FormDatRed])
+    // useEffect(()=>{
+    //   console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
+    //   },[FormDatRed])
 
       //console.log('finalObj',Object.values(obj))
 
-    useEffect(()=>{
-      console.log(SectionRed)
-      console.log('GridRed',GridRed)
-      console.log('ColumnHead',ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)))
-    },[GridRed])
+    // useEffect(()=>{
+    //   console.log(SectionRed)
+    //   console.log('GridRed',GridRed)
+    //   console.log('ColumnHead',ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)))
+    // },[GridRed])
 
-    useEffect(()=>{
-      console.log('saveGrid',SendConfDataRed)
-    },[SendConfDataRed])
+    // useEffect(()=>{
+    //   console.log('saveGrid',SendConfDataRed)
+    // },[SendConfDataRed])
 
     const width = '75vw'
 
     const handleSave = (val) =>{
-      console.log('subRes',val)
+      // console.log('subRes',val)
 
         if(Object.keys(FormDatRed).includes(val.gridId)){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
@@ -77,9 +79,16 @@ const FormConf = () => {
         // }
     }
 
+    useEffect(()=>{
+      if(!SendConfDataRed.loading){
+        setShowAlert(true)
+      }
+    },[SendConfDataRed])
+
 
   return (
     <div>
+      {showAlert&&MainObject.CustomAlert(setShowAlert)}
       <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%'}} className='bg-light'>

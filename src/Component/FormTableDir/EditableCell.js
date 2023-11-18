@@ -24,7 +24,7 @@ export const EditableCell = ({
       setValue(e.target.value)
     }
   
-    console.log('colId',id)
+    // console.log('colId',id)
     useEffect(()=>{
       if(id=='formId'){
         // setValue(SendConfDataRed.val.formId)
@@ -72,7 +72,7 @@ export const EditableCell = ({
   
     const onBlur = () => {
         updateMyData(index, id, value,null,'')
-        console.log('dropDownec',DropValRed.val)
+        // console.log('dropDownec',DropValRed.val)
     }
   
     // const updatedArray = Object.values(dataValdd.reduce((acc, curr) => {
@@ -365,7 +365,9 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     }
     return <div>
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
-      <button className="btn btn-danger mx-" onClick={()=>{handleClick('remove')}}>Remove</button>
+      <button className="btn btn-outline-danger" onClick={()=>{handleClick('remove')}}>
+        <i class="bi bi-trash"></i>
+       Remove</button>
     </div>
   }
 
@@ -374,6 +376,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     column:  id ,
     colObj:colObj,
     rowObj : rowObj,
+    gridData : gridData
   }) => {
 
     const dispatch = useDispatch()
@@ -383,8 +386,8 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
 
     const handleFunc = () => {
       setshow(!show)
-      dispatch(FormDataAct([rowObj.original]))    
-
+      console.log(gridData)
+      dispatch(FormDataAct(FormDatRed))
     }
     
     return <div>

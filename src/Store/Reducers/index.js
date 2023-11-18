@@ -3,7 +3,7 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
-import { FormIdRed,FormDatRed,EmdRed,DropDownValRed } from "./GeneralStatesRed";
+import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
@@ -14,6 +14,7 @@ import { ModalColumnRed } from "./ModalColumnRed";
 import { SendConfDataRed } from "./SendConfDataRed";
 import { DropValRed } from "./DropValRed";
 import { DropValSecRed } from "./DropValSecRed";
+import { FormExcelPostRed } from "./FormExcelPostRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -33,7 +34,9 @@ const rootReducers = combineReducers({
     DropValRed,
     EmdRed,
     DropValSecRed,
-    DropDownValRed
+    DropDownValRed,
+    ExcelDataRed,
+    FormExcelPostRed
     });
 
 export default rootReducers

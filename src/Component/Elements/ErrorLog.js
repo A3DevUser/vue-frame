@@ -6,16 +6,16 @@ function ErrorLog (props) {
     const {error, resetErrorBoundray} = props;
     const CurrentTime = new Date();
 
-    useEffect(()=>{
-      console.log('errMsg', JSON.stringify(error.stack))
+    // useEffect(()=>{
+    //   console.log('errMsg', JSON.stringify(error.stack))
 
-    },[props])
+    // },[props])
 
   return (
     <>
     <h2>ErrorLog </h2>
     <p>{error.message}</p>
-    {console.log(CurrentTime)}
+    {/* {console.log(CurrentTime)} */}
     </>
   )
 }

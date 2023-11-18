@@ -1,8 +1,9 @@
-import { Accordion,Modal,Spinner,Button,Badge } from "react-bootstrap"
+import { Accordion,Modal,Spinner,Button,Badge, Alert } from "react-bootstrap"
 import FormTable from "../FormTableDir/FormTable"
 import ModalButton from "../ModalButton"
 import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
 import TabsBar from "../Tabs"
+import './CommonFunc.css'
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -95,10 +96,10 @@ export const MainObject = {
             {
                 sectionData.map((res)=>{
                     return <> 
-                    <Badge style={{cursor:'pointer'}} className="m-1" onClick={()=>{setdefaultVal([res.secId])}}>{res.secName}</Badge>
+                    <Badge style={{cursor:'pointer'}} className="m-1 bgcolor" onClick={()=>{setdefaultVal([res.secId])}}>{res.secName}</Badge>
                     {
                         SubSectiondata.filter((fil,i)=>{return fil.secId == res.secId }).map((gres)=>{
-                            return <a href={'#'+gres.gridId} style={{cursor:'pointer'}} className="mx-3" onClick={()=>{setdefaultVal([res.secId])}}>{gres.gridName}</a>
+                            return <a href={'#'+gres.gridId} style={{cursor:'pointer'}} className="mx-3 fontcolor" onClick={()=>{setdefaultVal([res.secId])}}>{gres.gridName}</a>
                         })
                     } 
                     </>
@@ -109,5 +110,14 @@ export const MainObject = {
 
     tabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal,handleSave) =>{
         return <><TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} /></>
+    },
+
+    CustomAlert : (setShowAlert)=>{
+        const handleClose = ()=>{
+            setShowAlert(false)
+        }
+
+        return <Alert variant="success" dismissible onClose={handleClose}></Alert>
     }
+
 } 

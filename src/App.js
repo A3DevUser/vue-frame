@@ -16,11 +16,11 @@ const App = () => {
     setshow(!show)
   }
 
-  eval(
-    `window.handleClick = ()=>{
-      alert('hello world')
-    }`
-  )
+  // eval(
+  //   `window.handleClick = ()=>{
+  //     alert('hello world')
+  //   }`
+  // )
 
   return (
     <div>

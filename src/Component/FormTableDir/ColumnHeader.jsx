@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
 
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data,handleOnfocus,dropDownData) =>{
-console.log('dropDownData',dropDownData)
+// console.log('dropDownData',dropDownData)
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
     // console.log("cell Values",res)
@@ -20,7 +20,7 @@ console.log('dropDownData',dropDownData)
       let colIdVal = res.columnId
       // let json = rowObj.original
       // console.log("to get id",cell)
-      console.log('line23',dropDownData,res.columnId)
+      // console.log('line23',dropDownData,res.columnId)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
@@ -68,7 +68,7 @@ console.log('dropDownData',dropDownData)
       return{
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell : ({cell}) =>{ return<EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row}  /> },
+        Cell : ({cell}) =>{ return<EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} gridData={gridData}  /> },
         width : res.width,
         sticky : res.sticky
       }

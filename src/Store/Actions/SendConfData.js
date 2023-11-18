@@ -1,5 +1,8 @@
 import { MainObject } from "../../Component/Elements/commonFun"
 import axios from "axios"
+import { ModalAlert } from "../../Component/ModalCompo"
+import { useState } from "react"
+import { Alert } from "react-bootstrap"
 
 export const ConfReq = (getConfData)=>{
     return{
@@ -22,19 +25,20 @@ export const ConfError = (getConfData)=>{
     }
 }
 
+
 export const FormConfData = (api,FormConfInfo)=>{
-    console.log(api,FormConfInfo)
     return function(dispatch){
         dispatch(ConfReq())
         axios.post(api,FormConfInfo)
         .then((res)=>{
             // const FormDtls = res.data.map((Dtls=>Dtls))
             dispatch(ConfSuccess(res.data))
-           return MainObject.alert('Data Save Successfully')
+        //    return  <Alert variant="success">This is sucess</Alert>
         })
         .catch((err)=>{
             dispatch(ConfError(err))
-          return MainObject.alert(`Error Occurred: ${err}`)
+        //   return <Alert variant="danger">This is error</Alert>
         })
     }
+
 }

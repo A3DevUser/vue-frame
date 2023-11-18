@@ -31,3 +31,10 @@ export const DropDownVal = (val) =>{
         payload : val
     }
 }
+
+export const ExcelDataAct = (val) =>{
+    return {
+        type : 'ExcelDataAct',
+        payload : val
+    }
+}

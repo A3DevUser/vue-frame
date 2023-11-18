@@ -31,10 +31,10 @@ export const FetchDropValData = (FormId,GridId,ColId,JSON,oldData,rowInd) =>{
         .then((res)=>{
             // console.log("JSONval",rowInd)
             newObj[ColId+rowInd] = res.data.map((mres)=>{return {...mres,ColId : ColId,rowInd:rowInd}})
-            console.log("JSONval",newObj)
+            // console.log("JSONval",newObj)
             let firstSpread = Object.values(newObj)
 
-            console.log('newObj',firstSpread.flat())
+            // console.log('newObj',firstSpread.flat())
 
             const dropValdd = firstSpread.flat()
 

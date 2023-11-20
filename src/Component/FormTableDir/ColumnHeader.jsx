@@ -5,12 +5,13 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
 // console.log('dropDownData',dropDownData)
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
-    // console.log("cell Values",res)
+    console.log("cell Values",res)
     if(res.cellType==='textArea'){
+      // console.log("cell Values",res)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{  return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} />},
+        Cell: ({cell})=>{  return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType}/>},
         width : res.width,
         sticky : res.sticky
       }
@@ -42,7 +43,7 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{return <EditableNumCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown} colObj={cell.column} parentId={cell} rowObj={cell.row} />},
+        Cell: ({cell})=>{return <EditableNumCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth}/>},
         width : res.width,
         sticky : res.sticky
 

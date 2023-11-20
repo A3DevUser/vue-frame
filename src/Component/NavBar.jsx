@@ -52,7 +52,6 @@ className='navbar-background'
             return<NavDropdown className='ddClass' title={res.navName}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-107',navigate:'/confform'})}}>Organization Confg</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

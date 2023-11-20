@@ -15,40 +15,47 @@ export const EditableCell = ({
     updateMyData, 
     colObj:colObj,
     rowObj : rowObj,
+    valWidth : valWidth,
+    type : type,
     parentId
   }) => {
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
 
     const [value, setValue] = React.useState(initialValue)
+    const [freeze,setFreeze] = useState()
+
     const onChange = e => {
       setValue(e.target.value)
     }
   
     // console.log('colId',id)
     useEffect(()=>{
+      console.log('fieldTypeVal',colObj)
       if(id=='formId'){
         // setValue(SendConfDataRed.val.formId)
         updateMyData(index, id, SendConfDataRed.val.formId,null)
-
+        setFreeze(true)
       }
     },[SendConfDataRed])
     const onBlur = () => {
       updateMyData(index, id, value,null)
+      console.log('maxlengthpro',colObj)
     }
   
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
-  
+    
     return <div>
       <textarea value={value} className='form-control' style={{width:colObj.width
       // , background : value ? '#28a745' : 'white', color : 'white',
-      }} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      }} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' maxLength={valWidth} disabled={freeze}/>
       {/* xyz */}
     </div>
   }
 
   // let dataObj ={}
+  let freez = '';
 
   export const EditableDdCell = ({
     value: initialValue,
@@ -67,12 +74,15 @@ export const EditableCell = ({
     
     const onChange = e => {
       setValue(e.target.value)
-      // setdataValdd(DropValRed.val)
+      if(e.target.value == 'textArea'){
+        freez = false
+      }else{
+        freez = true
+      }
     }
   
     const onBlur = () => {
         updateMyData(index, id, value,null,'')
-        // console.log('dropDownec',DropValRed.val)
     }
   
     // const updatedArray = Object.values(dataValdd.reduce((acc, curr) => {
@@ -92,7 +102,7 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
-      <option>Select One</option>
+      <option value="">Select One</option>
       {
        DropValRed.loading ? <option value="">Drop Down</option> : 
        DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
@@ -103,6 +113,59 @@ export const EditableCell = ({
   }
 
   export const EditableNumCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj : rowObj,
+    valWidth : valWidth,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+    const [freeze,setFreeze] = useState()
+
+  
+    const onChange = e => {
+      if(/^\d*\.?\d*$/.test(e.target.value)){
+        if(valWidth == 4000){
+          const newValue = Math.min(e.target.value, 4000);
+          setValue(newValue)
+        }else{
+          setValue(e.target.value)
+        }
+      }
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,'')
+      console.log('dropDownec',colObj.id)
+    }
+
+    const funDisable = () => {
+      if(colObj.id == 'dbcolLimit'){
+        if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
+          setFreeze(false)
+        }else{
+          setFreeze(true)
+          setValue('')
+        }
+      }else{
+        setFreeze(false)
+      }
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+    return <div>
+      <input value={value} type={'number'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={freeze} onMouseOver={funDisable} min={'0'}/>
+      {/* freez = false ? freeze : freez */}
+    </div>
+  }
+
+  export const EditableDateCell = ({
     value: initialValue,
     row:  index ,
     column:  id ,
@@ -124,40 +187,10 @@ export const EditableCell = ({
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
-
   
     return <div>
-      <input value={value} type={'number'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={rowObj.original.isDisable} />
-      {/* xyz */}
-    </div>
-  }
-
-  export const EditableDateCell = ({
-    value: initialValue,
-    row:  index ,
-    column:  id ,
-    updateMyData, 
-    colObj:colObj,
-    rowObj : rowObj,
-    parentId
-  }) => {
-    const [value, setValue] = React.useState(initialValue)
-  
-    const onChange = e => {
-      setValue(e.target.value)
-    }
-  
-    const onBlur = () => {
-      updateMyData(index, id, value,null,parentId.column.parent.id)
-    }
-  
-    React.useEffect(() => {
-      setValue(initialValue)
-    }, [initialValue])
-  
-    return <div>
-      <input value={value} type={'date'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={rowObj.original.isDisable} />
-      {/* xyz */}
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      {/* xyz disabled={rowObj.original.isDisable}*/}
     </div>
   }
 
@@ -390,7 +423,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       dispatch(FormDataAct(FormDatRed))
     }
     
-    return <div>
+    return <div style={{ display: 'flex', alignItems: 'center', height: '10vh', justifyContent: 'center'}}>
       {MainObject.modalButton('Actions', handleFunc)}
       {MainObject.modalpop('',<><ModalForm/></>,show,handleFunc)}
     </div>

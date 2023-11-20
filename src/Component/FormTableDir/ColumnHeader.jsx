@@ -5,7 +5,7 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
 // console.log('dropDownData',dropDownData)
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
-    console.log("cell Values",res)
+    // console.log("cell Values",res)
     if(res.cellType==='textArea'){
       // console.log("cell Values",res)
       return {

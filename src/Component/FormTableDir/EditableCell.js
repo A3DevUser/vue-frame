@@ -30,7 +30,7 @@ export const EditableCell = ({
   
     // console.log('colId',id)
     useEffect(()=>{
-      console.log('fieldTypeVal',colObj)
+      // console.log('fieldTypeVal',colObj)
       if(id=='formId'){
         // setValue(SendConfDataRed.val.formId)
         updateMyData(index, id, SendConfDataRed.val.formId,null)
@@ -39,7 +39,7 @@ export const EditableCell = ({
     },[SendConfDataRed])
     const onBlur = () => {
       updateMyData(index, id, value,null)
-      console.log('maxlengthpro',colObj)
+      // console.log('maxlengthpro',colObj)
     }
   
     React.useEffect(() => {
@@ -139,29 +139,30 @@ export const EditableCell = ({
   
     const onBlur = () => {
       updateMyData(index, id, value,null,'')
-      console.log('dropDownec',colObj.id)
+      // console.log('dropDownec',colObj.id)
     }
 
-    const funDisable = () => {
+
+    useEffect(()=>{
       if(colObj.id == 'dbcolLimit'){
-        if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
-          setFreeze(false)
-        }else{
-          setFreeze(true)
-          setValue('')
-        }
-      }else{
-        setFreeze(false)
-      }
-    }
+            if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
+              setFreeze(false)
+            }else{
+              setFreeze(true)
+              setValue('')
+            }
+          }else{
+            setFreeze(false)
+          }
+    },[rowObj])
   
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
 
     return <div>
-      <input value={value} type={'number'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={freeze} onMouseOver={funDisable} min={'0'}/>
-      {/* freez = false ? freeze : freez */}
+      <input value={value} type={'number'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={freeze} 
+      min={'0'}/>
     </div>
   }
 
@@ -393,7 +394,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     const handleClick = (act) =>{
       let Obj = {}
       Object.keys(rowObj.original).forEach((fe)=>{Obj[fe] =''})
-      console.log(Obj)
+      // console.log(Obj)
       addAndDeleteRow(index,Obj,act)
     }
     return <div className="container">
@@ -419,7 +420,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
 
     const handleFunc = () => {
       setshow(!show)
-      console.log(gridData)
+      // console.log(gridData)
       dispatch(FormDataAct(FormDatRed))
     }
     

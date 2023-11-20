@@ -30,10 +30,10 @@ const GridForm = () => {
     useEffect(()=>{
     },[ColumnRed])
 
-    useEffect(()=>{
-    //   console.log('FormDatRed',JSON.stringify(Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})))
-    console.log('FormDatRed',FormDatRed)
-      },[FormDatRed])
+    // useEffect(()=>{
+    // //   console.log('FormDatRed',JSON.stringify(Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})))
+    // console.log('FormDatRed',FormDatRed)
+    //   },[FormDatRed])
 
       const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
@@ -62,7 +62,7 @@ const GridForm = () => {
         ColumnRed.loading ? MainObject.loader() :
         GridRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i}/>
+         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>
         })
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }

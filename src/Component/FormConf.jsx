@@ -13,9 +13,9 @@ import { Alert } from 'react-bootstrap';
 let AlertVal = {}
 export const AlertData = {
   AlertData : (Msg,Data,Popup) =>{
-    console.log('AterDataNew',Msg)
-    console.log('AterDataNew',Data)
-    console.log('AterDataNew',Popup)
+    // console.log('AterDataNew',Msg)
+    // console.log('AterDataNew',Data)
+    // console.log('AterDataNew',Popup)
     // let AlertVal = {msg: Msg, data: Data, popup: Popup}
     // return <Alert severity={Msg} dismissible onClose={Popup}>{Data}</Alert>
     return AlertVal = {msg: Msg, data: Data, popup: Popup}
@@ -24,7 +24,7 @@ export const AlertData = {
 
 
 const FormConf = () => {
-  console.log('AterDataNew',AlertVal)
+  // console.log('AterDataNew',AlertVal)
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const SectionRed = useSelector((state)=>state.ConfSectionRed)
@@ -68,7 +68,7 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      console.log('AterDataNew',AlertVal)
+      // console.log('AterDataNew',AlertVal)
 
         if(Object.keys(FormDatRed).includes(val.gridId)){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})

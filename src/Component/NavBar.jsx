@@ -46,10 +46,10 @@ className='navbar-background'
 {
     NavBarRed.val.map((res,i)=>{
         if(res.navType=='img'){
-            return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}}/>
+            return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}} key={i}/>
 
         }else if(res.navType=='conf'){
-            return<NavDropdown className='ddClass' title={res.navName}>
+            return<NavDropdown className='ddClass' title={res.navName} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
             </NavDropdown>
@@ -59,7 +59,7 @@ className='navbar-background'
             // >{res.navName}</button>
         }
         else{
-            return <NavDropdown className='ddClassEle' title={res.navName}>
+            return <NavDropdown className='ddClassEle' title={res.navName} key={i} >
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>

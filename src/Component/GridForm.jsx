@@ -10,6 +10,7 @@ import GridFormSub from './GridFormSub'
 import ImpExp from './ImportExport/ImpExp'
 import './GridForm.css'
 import { PostFormExcelData } from '../Store/Actions/FormExcelPostAct'
+import { FetchWFCommonData } from '../Store/Actions/WorkFlowCommon'
 
 const GridForm = () => {
 
@@ -40,15 +41,19 @@ const GridForm = () => {
         // console.log('FormDatRed',ExcelDataRed)
        console.log(FormDatRed)
           // dispatch(PostFormExcelData(res)) 
-          // Object.values(FormDatRed).forEach((res)=>{
-          //   dispatch(PostFormExcelData(res)) 
-          // })
+          Object.values(FormDatRed).forEach((res)=>{
+            dispatch(PostFormExcelData(res)) 
+          })
+
+          Object.keys(FormDatRed).forEach((res)=>{
+            dispatch(FetchWFCommonData(res))
+          })
 
       }
 
   return (
-    <div>
-      <div style={{ display:'flex', justifyContent : 'flex-end'}} className='mx-5 my-2'>
+    <div style={{marginTop:'5vh'}}>
+      <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
         <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
         <div>
       {MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Submit'},handleSave)}

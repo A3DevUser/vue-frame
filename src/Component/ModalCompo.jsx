@@ -10,7 +10,7 @@ export const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
 
   return (
     <div>
-      <Modal show={show} fullscreen={true} onHide={showFunc}>
+      <Modal show={show} fullscreen={true} scrollable={true} onHide={showFunc}>
         <Modal.Header style={{height:'8vh'}}>
         <h3>{NavBarRed.val.filter((fil)=>{return fil.formId == FormIdRed})[0].navName}</h3>
         <div className='modalHead'>
@@ -18,7 +18,7 @@ export const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
         <button className="btn btn-primary btn-sm" onClick={showFunc}>Close</button>
         </div>
         </Modal.Header>
-        <Modal.Body style={{overflow:'hidden'}}>{bodyDetails}</Modal.Body>
+        <Modal.Body className='modalBody' style={{overflow:'hidden',maxHeight: 'calc(150vh - 150px)', overflowY: 'auto'}}>{bodyDetails}</Modal.Body>
         <Modal.Footer style={{height:'50px'}}>
         </Modal.Footer>
       </Modal>

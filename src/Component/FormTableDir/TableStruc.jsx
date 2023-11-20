@@ -23,7 +23,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& EmdRed=='add') || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i>Remove</Button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& EmdRed=='add') || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i>Duplicate</Button>          
           {
-    MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Save</>},()=>{handleSave(gridData)})
+    MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)})
   }   
   </div>             
   </div>

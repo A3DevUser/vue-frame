@@ -49,7 +49,7 @@ className='navbar-background'
             return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}} key={i}/>
 
         }else if(res.navType=='conf'){
-            return<NavDropdown className='ddClass' title={res.navName} key={i}>
+            return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
             </NavDropdown>

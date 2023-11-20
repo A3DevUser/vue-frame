@@ -15,6 +15,7 @@ import { SendConfDataRed } from "./SendConfDataRed";
 import { DropValRed } from "./DropValRed";
 import { DropValSecRed } from "./DropValSecRed";
 import { FormExcelPostRed } from "./FormExcelPostRed";
+import { WFCommonRed } from "./WorkFlowCommRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -36,7 +37,8 @@ const rootReducers = combineReducers({
     DropValSecRed,
     DropDownValRed,
     ExcelDataRed,
-    FormExcelPostRed
+    FormExcelPostRed,
+    WFCommonRed
     });
 
 export default rootReducers

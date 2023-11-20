@@ -3,3 +3,7 @@
     justify-content: flex-end !important;
     width: 96vw;
 }
+
+.modalBody::-webkit-scrollbar{
+    display: none;
+}

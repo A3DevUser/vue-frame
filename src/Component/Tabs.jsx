@@ -1,5 +1,6 @@
 import { Tab, Tabs } from "react-bootstrap"
 import { MainObject } from "./Elements/commonFun"
+import './CSS/Tabs.css'
 
 function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
 
@@ -14,7 +15,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
         {
             accordionVal.map((res,i)=>{
                 return <Tab eventKey={res.secId} title={<span onClick={()=>{handleChangeSec(res)}} className="tabTitle">{res.secName}</span>} key={i} >
-                                <div style={{height:'79vh',maxHeight:'79vh', overflowY:'scroll'}}>{
+                                <div style={{height:'79vh',maxHeight:'79vh', overflowY:'scroll'}} className='tabDiv'>{
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{

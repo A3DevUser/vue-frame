@@ -7,6 +7,7 @@ import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
 import { FetchConfSectionData } from '../Store/Actions/ConfSection'
 import { FormConfData } from '../Store/Actions/SendConfData';
 import { useNavigate } from 'react-router';
+import './CSS/FormConf.css'
 
 const FormConf = () => {
 
@@ -91,12 +92,12 @@ const FormConf = () => {
       {showAlert&&MainObject.CustomAlert(setShowAlert)}
       <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
-  <div style={{flex: '15%'}} className='bg-light'>
+  <div style={{flex: '15%',height:'89vh',maxHeight:'89vh',overflow:'scroll'}} className='bg-light secNavDiv'>
 {
   SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() :  MainObject.SectionNav(SectionRed.val,GridRed.val,setdefaultVal)
   }
   </div>
-  <div style={{flex: '95%',height:'80vh', maxHeight:'80vh', overflow:'scroll'}} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
+  <div style={{flex: '95%',height:'89vh'}} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
 
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 

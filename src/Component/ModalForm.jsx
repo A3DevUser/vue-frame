@@ -80,7 +80,7 @@ const ModalForm = () => {
             ModalSectionRed.loading ? MainObject.loader() : ModalGridRed.loading ? MainObject.loader() : MainObject.SectionNav(ModalSectionRed.val, ModalGridRed.val, setdefaultVal)
           }
         </div>
-        <div style={{ flex: '95%', height: '80vh', maxHeight: '80vh', overflow: 'scroll' }} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
+        <div style={{ flex: '95%' }} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
           {
             ModalSectionRed.loading ? MainObject.loader() : ModalGridRed.loading ? MainObject.loader() :
               ModalColumnRed.loading ? MainObject.loader() :

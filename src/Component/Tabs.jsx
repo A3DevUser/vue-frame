@@ -9,7 +9,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
         {
             accordionVal.map((res,i)=>{
                 return <Tab eventKey={res.secId} title={<span className="tabTitle">{res.secName}</span>} key={i} >
-                                {
+                                <div style={{height:'79vh',maxHeight:'79vh', overflowY:'scroll'}}>{
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
@@ -25,17 +25,17 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                     <div style={{maxWidth : subRes.width}}>
                         {
                         columnData&&
-                        MainObject.table(columnData,[dataObj],subRes)
+                        MainObject.table(columnData,[dataObj],subRes,handleSave)
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
-  {
+  {/* {
     MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName:'Save'},()=>{handleSave(subRes)},i)
-  }
+  } */}
   </span>
   <br/><br/><br/><br/>
   </div></>)
                 })
-            }
+            }</div>
                 </Tab>
             })
         }

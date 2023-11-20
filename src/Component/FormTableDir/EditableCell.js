@@ -41,9 +41,9 @@ export const EditableCell = ({
     }, [initialValue])
   
     return <div>
-      <textarea value={value} className='form-control' style={{width:colObj.width
+      <textarea value={value} className='form-control' style={{width:colObj.width,height:'7vh'
       // , background : value ? '#28a745' : 'white', color : 'white',
-      }} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      }} onChange={onChange} onBlur={onBlur} placeholder='Type here..'  />
       {/* xyz */}
     </div>
   }
@@ -363,11 +363,11 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       console.log(Obj)
       addAndDeleteRow(index,Obj,act)
     }
-    return <div>
+    return <div className="container">
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
       <button className="btn btn-outline-danger" onClick={()=>{handleClick('remove')}}>
         <i class="bi bi-trash"></i>
-       Remove</button>
+       </button>
     </div>
   }
 

@@ -26,8 +26,8 @@ export const MainObject = {
         }
     },
 
-    table : (col,data,gridData) =>{
-         return <FormTable col={col} dData={data} gridData={gridData}/> },
+    table : (col,data,gridData,handleSave) =>{
+         return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 
@@ -92,7 +92,7 @@ export const MainObject = {
         // console.log(SubSectiondata)
         const secNamesEncountered = [];
 // console.log(SubSectiondata.sort((a,b)=> a.secId.localeCompare(b.secId)))
-        return <div className='d-flex flex-column align-items-start flex' id="sectionNavbar" >
+        return <div className='d-flex flex-column align-items-start flex my-3' id="sectionNavbar" >
             {
                 sectionData.map((res)=>{
                     return <> 
@@ -117,7 +117,7 @@ export const MainObject = {
             setShowAlert(false)
         }
 
-        return <Alert variant="success" dismissible onClose={handleClose}></Alert>
+        return <Alert variant="success" dismissible onClose={handleClose}>Alert</Alert>
     }
 
 } 

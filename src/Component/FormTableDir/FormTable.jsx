@@ -1,5 +1,5 @@
 import  { useEffect, useMemo, useState } from 'react'
-import { useBlockLayout, useResizeColumns, useTable } from 'react-table'
+import { useBlockLayout, useResizeColumns, useTable,useRowSelect } from 'react-table'
 import './TableStyle.css'
 import { Styles,VerticalTableStyles, VertStyles } from './TableStyles'
 import { ColumnHeader } from './ColumnHeader'
@@ -10,8 +10,11 @@ import { FormDataAct } from '../../Store/Actions/GeneralStates'
 import { EditableActionCell } from './EditableCell'
 import VertTableStruc from './VertTableStruc'
 import { FetchDropValData } from '../../Store/Actions/DropVal'
+import { MainObject } from '../Elements/commonFun'
+import { Checkbox } from './Checkbox'
+import { Button } from 'react-bootstrap'
 
-const FormTable = ({col,dData,gridData}) => {
+const FormTable = ({col,dData,gridData,handleSave}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
@@ -110,7 +113,6 @@ const FormTable = ({col,dData,gridData}) => {
       // },[DropValRed])
   
         useEffect(()=>{
-          console.log('TableData',FormDatRed)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
@@ -134,14 +136,14 @@ const FormTable = ({col,dData,gridData}) => {
         //   }
           },[data])
 
-          const defaultColumn = useMemo(
-            () => ({
-              // minWidth: 30,
-              // width: 150,
-              // maxWidth: 400
-            }),
-            []
-          );
+          // const defaultColumn = useMemo(
+          //   () => ({
+          //     // minWidth: 30,
+          //     // width: 150,
+          //     // maxWidth: 400
+          //   }),
+          //   []
+          // );
           // useEffect(()=>{
           //   console.log('tableColumns',columns)
           // },[columns])
@@ -156,28 +158,67 @@ const FormTable = ({col,dData,gridData}) => {
             addAndDeleteRow('',obj,'add')
           }
 
+          const handleRemove = () =>{
+            console.log('selectedFlatRows',selectedFlatRows)
+
+            setdata(old =>{
+              return old.filter((fil,i)=>{
+                return !selectedFlatRows.some(row=> i==row.id)
+              })
+            })
+          }
+
+          const handleCopy = () =>{
+            setdata(old=>{return [...old,...selectedFlatRows.map((res)=>{return res.original})]})
+          }
+
 
   
       const tableInstance = useTable({
           columns,
           data,
-          defaultColumn
-      },useBlockLayout,useResizeColumns,useSticky)
+          
+      },useBlockLayout,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
+        hooks.visibleColumns.push((columns)=>{
+          return [{
+            id :'selection',
+            Header : ({getToggleAllRowsSelectedProps})=>{
+              return <Checkbox {...getToggleAllRowsSelectedProps()}/>
+            },
+            Cell : ({row}) =>{
+              return <Checkbox {...row.getToggleRowSelectedProps()}/>
+            },
+            width:'50',
+            sticky : 'left'
+          },
+          ...columns]
+        })
+      })
   
-  const {getTableProps,getTableBodyProps,headerGroups,prepareRow,rows} = tableInstance
+  const {getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,selectedFlatRows} = tableInstance
+
     return (
-      <div>
+      <div >
         <Styles>
           <div style={{display:'flex'}}>
-        <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
-        <div style={{flex:'1'}}>
-        <button className='btn btn-success mx-5' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
+        {/* <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6> */}
+        {/* <div style={{flex:'1'}}>
+        <button className='btn btn-success mx-2' style={{float:'right', display : gridData.isMrow =='true' ? 'block' : 'none',flex:'1' }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
         ><i class="bi bi-plus-lg"></i> Add</button>
-                </div>
+        <Button variant='success' style={{float:'right',display : gridData.isMrow =='true' ? 'block' : 'none'}}><i class="bi bi-trash"> </i>Remove</Button>
+        <Button variant='success' style={{float:'right',display : gridData.isMrow =='true' ? 'block' : 'none'}} className='mx-2'><i class="bi bi-copy"> </i>Duplicate</Button>
+
+        <div style={{float:'right'}}>
+          
+          {
+    MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Save</>},()=>{handleSave(gridData)})
+  }
+  </div>
+                </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} />
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={rows} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} />
         </Styles>
     </div>
   )

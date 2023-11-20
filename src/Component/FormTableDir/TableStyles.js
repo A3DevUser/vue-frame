@@ -46,6 +46,19 @@ export const VerticalTableStyles = styled.div`
 `;
 
 export const Styles = styled.div`
+
+
+
+.tableCont::-webkit-scrollbar{
+  width: .5vw;
+  height : 1vh
+}
+
+.tableCont::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius : 20px
+}
+
   .table {
     border: 1px solid #ddd;
  

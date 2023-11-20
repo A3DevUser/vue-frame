@@ -40,9 +40,9 @@ const GridForm = () => {
         // console.log('FormDatRed',ExcelDataRed)
        console.log(FormDatRed)
           // dispatch(PostFormExcelData(res)) 
-          Object.values(FormDatRed).forEach((res)=>{
-            dispatch(PostFormExcelData(res)) 
-          })
+          // Object.values(FormDatRed).forEach((res)=>{
+          //   dispatch(PostFormExcelData(res)) 
+          // })
 
       }
 

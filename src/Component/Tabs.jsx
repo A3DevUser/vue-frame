@@ -2,13 +2,18 @@ import { Tab, Tabs } from "react-bootstrap"
 import { MainObject } from "./Elements/commonFun"
 
 function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
+
+    const handleChangeSec = (e) =>{
+        // console.log(e)
+        setdefaultVal([e.secId])
+    }
     // console.log('columnData',columnData)
 
     return <Tabs activeKey={defaultVal ? defaultVal[0] : ''} id="fill-tab-example" className="mb-3 m-2 bg-gray" fill>
         
         {
             accordionVal.map((res,i)=>{
-                return <Tab eventKey={res.secId} title={<span className="tabTitle">{res.secName}</span>} key={i} >
+                return <Tab eventKey={res.secId} title={<span onClick={()=>{handleChangeSec(res)}} className="tabTitle">{res.secName}</span>} key={i} >
                                 <div style={{height:'79vh',maxHeight:'79vh', overflowY:'scroll'}}>{
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId

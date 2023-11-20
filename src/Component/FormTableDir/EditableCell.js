@@ -399,7 +399,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     }
     return <div className="container">
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
-      <button className="btn btn-outline-danger" onClick={()=>{handleClick('remove')}}>
+      <button className="btn btn-danger" onClick={()=>{handleClick('remove')}}>
         <i class="bi bi-trash"></i>
        </button>
     </div>

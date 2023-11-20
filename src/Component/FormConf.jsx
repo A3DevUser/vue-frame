@@ -37,7 +37,6 @@ const FormConf = () => {
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});
-    const [showAlert, setShowAlert] = useState(false);
 
     function funSave() {
       // console.log('finalObj',Object.values(obj))
@@ -94,24 +93,9 @@ const FormConf = () => {
         // }
     }
 
-    useEffect(()=>{
-      // if(!SendConfDataRed.loading){
-      //   setShowAlert(true)
-      // }
-      if(AlertVal.popup == 'ture'){
-        setShowAlert(true)
-      }
-    },[SendConfDataRed])
-
-    const handleClose = ()=>{
-      setShowAlert(false)
-  }
-
 
   return (
     <div>
-      {showAlert&&<Alert className={AlertVal.msg} dismissible onClose={handleClose}>{AlertVal.data}</Alert>}
-      {/* {showAlert&&MainObject.CustomAlert(setShowAlert)} */}
       <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%',height:'89vh',maxHeight:'89vh',overflow:'scroll'}} className='bg-light secNavDiv'>

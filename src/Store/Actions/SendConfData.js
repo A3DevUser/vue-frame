@@ -1,9 +1,5 @@
-import { MainObject } from "../../Component/Elements/commonFun"
 import axios from "axios"
-import { ModalAlert } from "../../Component/ModalCompo"
-import { useState } from "react"
-import { Alert } from "react-bootstrap"
-import { AlertData } from "../../Component/FormConf"
+import swal from "sweetalert"
 
 
 
@@ -34,19 +30,22 @@ export const FormConfData = (api,FormConfInfo)=>{
         dispatch(ConfReq())
         axios.post(api,FormConfInfo)
         .then((res)=>{
-            // const FormDtls = res.data.map((Dtls=>Dtls))
             dispatch(ConfSuccess(res.data))
-            // return MainObject.alert('Data Save Successfully')
-            return AlertData.AlertData('alert alert-primary','Data Save Successfully','true')
-        //    return  <Alert variant="success">This is sucess</Alert>
-        // return <Alert severity="success">This is a success alert — check it out!</Alert>
+            return swal({
+                title :'Alert',
+                text : 'Data Save Successfully',
+                icon: "success",
+            })
         })
         .catch((err)=>{
             dispatch(ConfError(err))
-            // return MainObject.alert(`Error Occurred: ${err}`)
             let ErrorLog = JSON.stringify(`Error Occurred: ${err}`)
-            return AlertData.AlertData('alert alert-danger',err.message,'ture')
-        //   return <Alert variant="danger">This is error</Alert>
+            return  swal({
+                title :'Alert',
+                text : ErrorLog,
+                icon: "warning",
+                dangerMode: true
+            })
         })
     }
 

@@ -109,7 +109,7 @@ export const MainObject = {
     },
 
     tabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal,handleSave) =>{
-        return <><TabsBar accordionVal={accordionVal} columnData={columnData} gridData={gridData} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} /></>
+        return <><TabsBar accordionVal={accordionVal.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} columnData={columnData.sort((a,b) => parseInt(a.number) - parseInt(b.number))} gridData={gridData.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} /></>
     },
 
     CustomAlert : (setShowAlert)=>{
@@ -119,5 +119,12 @@ export const MainObject = {
 
         return <Alert variant="success" dismissible onClose={handleClose}>Alert</Alert>
     }
+
+    // AlertData : (Msg,Data,Popup) =>{
+    //     console.log('AterDataNew',Popup)
+    //     let AlertVal = {msg: Msg, data: Data, popup: Popup}
+    //     // return <Alert severity={Msg} dismissible onClose={Popup}>{Data}</Alert>
+    //     return AlertVal
+    // }
 
 } 

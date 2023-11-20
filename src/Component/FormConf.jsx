@@ -8,9 +8,23 @@ import { FetchConfSectionData } from '../Store/Actions/ConfSection'
 import { FormConfData } from '../Store/Actions/SendConfData';
 import { useNavigate } from 'react-router';
 import './CSS/FormConf.css'
+import { Alert } from 'react-bootstrap';
+
+let AlertVal = {}
+export const AlertData = {
+  AlertData : (Msg,Data,Popup) =>{
+    console.log('AterDataNew',Msg)
+    console.log('AterDataNew',Data)
+    console.log('AterDataNew',Popup)
+    // let AlertVal = {msg: Msg, data: Data, popup: Popup}
+    // return <Alert severity={Msg} dismissible onClose={Popup}>{Data}</Alert>
+    return AlertVal = {msg: Msg, data: Data, popup: Popup}
+  }
+}
+
 
 const FormConf = () => {
-
+  console.log('AterDataNew',AlertVal)
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const SectionRed = useSelector((state)=>state.ConfSectionRed)
@@ -54,7 +68,7 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      // console.log('subRes',val)
+      console.log('AterDataNew',AlertVal)
 
         if(Object.keys(FormDatRed).includes(val.gridId)){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
@@ -81,15 +95,23 @@ const FormConf = () => {
     }
 
     useEffect(()=>{
-      if(!SendConfDataRed.loading){
+      // if(!SendConfDataRed.loading){
+      //   setShowAlert(true)
+      // }
+      if(AlertVal.popup == 'ture'){
         setShowAlert(true)
       }
     },[SendConfDataRed])
 
+    const handleClose = ()=>{
+      setShowAlert(false)
+  }
+
 
   return (
     <div>
-      {showAlert&&MainObject.CustomAlert(setShowAlert)}
+      {showAlert&&<Alert className={AlertVal.msg} dismissible onClose={handleClose}>{AlertVal.data}</Alert>}
+      {/* {showAlert&&MainObject.CustomAlert(setShowAlert)} */}
       <div style={{float:'right'}}>  </div>
     <div style={{display: 'flex', flexDirection: 'row', maxHeight:'100vh' }} className='main-div'>
   <div style={{flex: '15%',height:'89vh',maxHeight:'89vh',overflow:'scroll'}} className='bg-light secNavDiv'>
